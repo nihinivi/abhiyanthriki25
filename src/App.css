@@ -1,0 +1,26 @@
+/* Reset default demo styles; Tailwind will be used instead */
+#root {
+  padding: 0;
+  margin: 0;
+}
+
+.logo { display: none; }
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card { padding: 0; }
+
+.read-the-docs { display: none; }
