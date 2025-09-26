@@ -37,3 +37,16 @@ h3 { font-size: clamp(1.25rem, 3vw, 2.5rem); line-height: 1.1; }
   scrollbar-width: none; /* Firefox */
 }
 
+/* ✅ ADDED: Gallery Animation Keyframes & Classes */
+@keyframes marquee {
+  from { transform: translateX(0%); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee-normal {
+  animation: marquee 60s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee 60s linear infinite reverse;
+}

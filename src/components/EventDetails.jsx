@@ -2,53 +2,53 @@ import React, { useState, useMemo } from "react";
 
 // --- MOCK DATA ---
 const allEvents = [
-    { id: 1, title: "AI & Robotics Expo", category: "technical", description: "Explore the latest advancements in AI and Robotics. A full day of demos, talks, and workshops.", date: "Oct 10, 2025", venue: "Innovation Hall", imageUrl: "https://images.unsplash.com/photo-1677442135755-334341419a4e?auto=format&fit=crop&q=80&w=800" },
-    { id: 2, title: "Quantum Computing Summit", category: "technical", description: "A deep dive into the world of quantum computing with leading researchers and industry pioneers.", date: "Oct 12, 2025", venue: "Quantum Auditorium", imageUrl: "https://images.unsplash.com/photo-1532187643623-dbf2670316b8?auto=format&fit=crop&q=80&w=800" },
-    { id: 3, title: "CyberSec Conference", category: "technical", description: "Learn about the latest threats, vulnerabilities, and defense strategies from top security experts.", date: "Oct 15, 2025", venue: "SecureData Center", imageUrl: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=800" },
-    { id: 4, title: "Cloud Native & DevOps", category: "technical", description: "Mastering container orchestration, CI/CD pipelines, and infrastructure as code for modern applications.", date: "Oct 17, 2025", venue: "DevOps Dome", imageUrl: "https://images.unsplash.com/photo-1580894908361-967195033215?auto=format&fit=crop&q=80&w=800" },
-    { id: 5, title: "Gaming Tournament", category: "non-technical", description: "Compete in the annual e-sports tournament. Featuring popular titles, cash prizes, and a live audience.", date: "Oct 18, 2025", venue: "E-Sports Arena", imageUrl: "https://images.unsplash.com/photo-1609804231297-89024f3645b7?auto=format&fit=crop&q=80&w=800" },
-    { id: 6, title: "Startup Pitch Night", category: "non-technical", description: "Watch the brightest new startups pitch their ideas to a panel of venture capitalists.", date: "Oct 20, 2025", venue: "Venture Hub", imageUrl: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=800" },
-    { id: 7, title: "Tech Industry Social Mixer", category: "non-technical", description: "A casual social event for professionals in the tech industry to connect, share ideas, and build their network.", date: "Oct 22, 2025", venue: "The Network Lounge", imageUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" },
-    { id: 8, title: "Creative Design Workshop", category: "non-technical", description: "Unlock your creative potential with hands-on sessions on UI/UX design, branding, and digital art.", date: "Oct 25, 2025", venue: "Artisan's Hall", imageUrl: "https://images.unsplash.com/photo-1587440871875-191322ee64b0?auto=format&fit=crop&q=80&w=800" },
+    { id: 1, title: "AI & Robotics Expo", category: "technical", description: "Explore the latest advancements in AI and Robotics. A full day of demos, talks, and workshops.", date: "Oct 10, 2025", venue: "Innovation Hall", imageUrl: "https://images.unsplash.com/photo-1677442135755-334341419a4e?auto=format&fit=crop&q=80&w=800" },
+    { id: 2, title: "Quantum Computing Summit", category: "technical", description: "A deep dive into the world of quantum computing with leading researchers and industry pioneers.", date: "Oct 12, 2025", venue: "Quantum Auditorium", imageUrl: "https://images.unsplash.com/photo-1532187643623-dbf2670316b8?auto=format&fit=crop&q=80&w=800" },
+    { id: 3, title: "CyberSec Conference", category: "technical", description: "Learn about the latest threats, vulnerabilities, and defense strategies from top security experts.", date: "Oct 15, 2025", venue: "SecureData Center", imageUrl: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=800" },
+    { id: 4, title: "Cloud Native & DevOps", category: "technical", description: "Mastering container orchestration, CI/CD pipelines, and infrastructure as code for modern applications.", date: "Oct 17, 2025", venue: "DevOps Dome", imageUrl: "https://images.unsplash.com/photo-1580894908361-967195033215?auto=format&fit=crop&q=80&w=800" },
+    { id: 5, title: "Gaming Tournament", category: "non-technical", description: "Compete in the annual e-sports tournament. Featuring popular titles, cash prizes, and a live audience.", date: "Oct 18, 2025", venue: "E-Sports Arena", imageUrl: "https://images.unsplash.com/photo-1609804231297-89024f3645b7?auto=format&fit=crop&q=80&w=800" },
+    { id: 6, title: "Startup Pitch Night", category: "non-technical", description: "Watch the brightest new startups pitch their ideas to a panel of venture capitalists.", date: "Oct 20, 2025", venue: "Venture Hub", imageUrl: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=800" },
+    { id: 7, title: "Tech Industry Social Mixer", category: "non-technical", description: "A casual social event for professionals in the tech industry to connect, share ideas, and build their network.", date: "Oct 22, 2025", venue: "The Network Lounge", imageUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" },
+    { id: 8, title: "Creative Design Workshop", category: "non-technical", description: "Unlock your creative potential with hands-on sessions on UI/UX design, branding, and digital art.", date: "Oct 25, 2025", venue: "Artisan's Hall", imageUrl: "https://images.unsplash.com/photo-1587440871875-191322ee64b0?auto=format&fit=crop&q=80&w=800" },
 ];
 
 const FilterBorderSVG = ({ children }) => {
-  return (
-    <div className="relative w-[520px] h-[80px] flex items-center justify-center">
-      <svg
-        className="absolute inset-0"
-        viewBox="0 0 617 87"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect
-          x="1"
-          y="1"
-          width="615"
-          height="85"
-          rx="35"
-          stroke="white"
-          strokeWidth="2"
-        />
-      </svg>
+  return (
+    <div className="relative w-[520px] h-[80px] flex items-center justify-center">
+      <svg
+        className="absolute inset-0"
+        viewBox="0 0 617 87"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          x="1"
+          y="1"
+          width="615"
+          height="85"
+          rx="35"
+          stroke="white"
+          strokeWidth="2"
+        />
+      </svg>
 
-      {/* Content goes here */}
-      <div className="relative z-10 flex items-center justify-center gap-4">
-        {children}
-      </div>
-    </div>
-  );
+      {/* Content goes here */}
+      <div className="relative z-10 flex items-center justify-center gap-4">
+        {children}
+      </div>
+    </div>
+  );
 };
 
 // --- SVG SHAPE COMPONENTS ---
 const CardShapeSVG = () => (
-    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 464 636" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 80.5V19C1 9.05888 9.05887 1 19 1H112.169C115.016 1 117.822 1.67525 120.357 2.9703L170.393 28.5297C172.928 29.8248 175.734 30.5 178.581 30.5H285.419C288.266 30.5 291.072 29.8247 293.607 28.5297L343.643 2.9703C346.178 1.67525 348.984 1 351.831 1H445C454.941 1 463 9.05887 463 19V547.07C463 552.122 460.877 556.942 457.148 560.352L406.852 605.648C403.123 609.058 398.303 611 393.25 611H70.75C65.6971 611 60.8766 609.058 57.1484 605.648L6.85163 560.352C3.12343 556.942 1 552.122 1 547.07V80.5Z" fill="#1C1C1C" stroke="#333333" strokeWidth="1"/>
-    </svg>
+    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 464 636" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 80.5V19C1 9.05888 9.05887 1 19 1H112.169C115.016 1 117.822 1.67525 120.357 2.9703L170.393 28.5297C172.928 29.8248 175.734 30.5 178.581 30.5H285.419C288.266 30.5 291.072 29.8247 293.607 28.5297L343.643 2.9703C346.178 1.67525 348.984 1 351.831 1H445C454.941 1 463 9.05887 463 19V547.07C463 552.122 460.877 556.942 457.148 560.352L406.852 605.648C403.123 609.058 398.303 611 393.25 611H70.75C65.6971 611 60.8766 609.058 57.1484 605.648L6.85163 560.352C3.12343 556.942 1 552.122 1 547.07V80.5Z" fill="#1C1C1C" stroke="#333333" strokeWidth="1"/>
+    </svg>
 );
 
 const PageBorderSVG = () => (
-    <svg className="absolute inset-0 w-screen h-screen" viewBox="0 0 1920 1080" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className="absolute inset-0 w-screen h-screen" viewBox="0 0 1920 1080" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
 <mask id="path-1-inside-1_130_60" fill="white">
 <path d="M1779 3C1787.28 3 1794 9.71573 1794 18V914C1794 922.284 1787.28 929 1779 929H31C22.7157 929 16 922.284 16 914V18C16 9.71573 22.7157 3 31 3H512C536.301 3 556 22.6995 556 47C556 66.8823 572.118 83 592 83H1217C1236.88 83 1253 66.8823 1253 47C1253 22.6995 1272.7 3 1297 3H1779Z"/>
 </mask>
@@ -64,7 +64,7 @@ const PageBorderSVG = () => (
 </mask>
 <path d="M1791 882.373V883.373H1792V882.373H1791ZM1699.97 882.373H1698.97V883.373H1699.97V882.373ZM1699.97 817.373V816.373H1698.97V817.373H1699.97ZM1712.99 817.373H1713.99V816.373H1712.99V817.373ZM1712.99 869.36H1711.99V870.36H1712.99V869.36ZM1739.01 869.36V870.36H1740.01V869.36H1739.01ZM1739.01 830.322V829.322H1738.01V830.322H1739.01ZM1752.03 830.322H1753.03V829.322H1752.03V830.322ZM1752.03 869.36H1751.03V870.36H1752.03V869.36ZM1777.99 869.36V870.36H1778.99V869.36H1777.99ZM1777.99 817.373V816.373H1776.99V817.373H1777.99ZM1791 817.373H1792V816.373H1791V817.373ZM1791 882.373V881.373H1699.97V882.373V883.373H1791V882.373ZM1699.97 882.373H1700.97V817.373H1699.97H1698.97V882.373H1699.97ZM1699.97 817.373V818.373H1712.99V817.373V816.373H1699.97V817.373ZM1712.99 817.373H1711.99V869.36H1712.99H1713.99V817.373H1712.99ZM1712.99 869.36V870.36H1739.01V869.36V868.36H1712.99V869.36ZM1739.01 869.36H1740.01V830.322H1739.01H1738.01V869.36H1739.01ZM1739.01 830.322V831.322H1752.03V830.322V829.322H1739.01V830.322ZM1752.03 830.322H1751.03V869.36H1752.03H1753.03V830.322H1752.03ZM1752.03 869.36V870.36H1777.99V869.36V868.36H1752.03V869.36ZM1777.99 869.36H1778.99V817.373H1777.99H1776.99V869.36H1777.99ZM1777.99 817.373V818.373H1791V817.373V816.373H1777.99V817.373ZM1791 817.373H1790V882.373H1791H1792V817.373H1791ZM1765.8 803.599L1766.51 804.306L1765.8 803.599ZM1699.97 804.424H1698.97V805.424H1699.97V804.424ZM1699.97 791.411V790.411H1698.97V791.411H1699.97ZM1758.5 791.411V792.411H1758.91L1759.21 792.118L1758.5 791.411ZM1777.99 771.924L1778.69 772.631L1779.4 771.925L1778.7 771.218L1777.99 771.924ZM1758.5 752.373L1759.21 751.667L1758.92 751.373H1758.5V752.373ZM1699.97 752.373H1698.97V753.373H1699.97V752.373ZM1699.97 739.424V738.424H1698.97V739.424H1699.97ZM1791 765.386H1792V764.972L1791.71 764.679L1791 765.386ZM1791 778.398L1791.71 779.106L1792 778.813V778.398H1791ZM1765.8 803.599L1765.09 802.892C1764.73 803.259 1764.32 803.424 1763.83 803.424V804.424V805.424C1764.87 805.424 1765.77 805.039 1766.51 804.306L1765.8 803.599ZM1763.83 804.424V803.424H1699.97V804.424V805.424H1763.83V804.424ZM1699.97 804.424H1700.97V791.411H1699.97H1698.97V804.424H1699.97ZM1699.97 791.411V792.411H1758.5V791.411V790.411H1699.97V791.411ZM1758.5 791.411L1759.21 792.118L1778.69 772.631L1777.99 771.924L1777.28 771.217L1757.79 790.704L1758.5 791.411ZM1777.99 771.924L1778.7 771.218L1759.21 751.667L1758.5 752.373L1757.79 753.079L1777.28 772.63L1777.99 771.924ZM1758.5 752.373V751.373H1699.97V752.373V753.373H1758.5V752.373ZM1699.97 752.373H1700.97V739.424H1699.97H1698.97V752.373H1699.97ZM1699.97 739.424V740.424H1763.83V739.424V738.424H1699.97V739.424ZM1763.83 739.424V740.424C1764.41 740.424 1764.8 740.596 1765.09 740.893L1765.8 740.186L1766.51 739.478C1765.79 738.76 1764.87 738.424 1763.83 738.424V739.424ZM1765.8 740.186L1765.09 740.893L1790.29 766.093L1791 765.386L1791.71 764.679L1766.51 739.478L1765.8 740.186ZM1791 765.386H1790V778.398H1791H1792V765.386H1791ZM1791 778.398L1790.29 777.691L1765.09 802.892L1765.8 803.599L1766.51 804.306L1791.71 779.106L1791 778.398ZM1791 726.475V727.475H1792V726.475H1791ZM1699.97 726.475H1698.97V727.475H1699.97V726.475ZM1699.97 661.475V660.475H1698.97V661.475H1699.97ZM1712.99 661.475H1713.99V660.475H1712.99V661.475ZM1712.99 713.462H1711.99V714.462H1712.99V713.462ZM1739.01 713.462V714.462H1740.01V713.462H1739.01ZM1739.01 674.424V673.424H1738.01V674.424H1739.01ZM1752.03 674.424H1753.03V673.424H1752.03V674.424ZM1752.03 713.462H1751.03V714.462H1752.03V713.462ZM1777.99 713.462V714.462H1778.99V713.462H1777.99ZM1777.99 661.475V660.475H1776.99V661.475H1777.99ZM1791 661.475H1792V660.475H1791V661.475ZM1791 726.475V725.475H1699.97V726.475V727.475H1791V726.475ZM1699.97 726.475H1700.97V661.475H1699.97H1698.97V726.475H1699.97ZM1699.97 661.475V662.475H1712.99V661.475V660.475H1699.97V661.475ZM1712.99 661.475H1711.99V713.462H1712.99H1713.99V661.475H1712.99ZM1712.99 713.462V714.462H1739.01V713.462V712.462H1712.99V713.462ZM1739.01 713.462H1740.01V674.424H1739.01H1738.01V713.462H1739.01ZM1739.01 674.424V675.424H1752.03V674.424V673.424H1739.01V674.424ZM1752.03 674.424H1751.03V713.462H1752.03H1753.03V674.424H1752.03ZM1752.03 713.462V714.462H1777.99V713.462V712.462H1752.03V713.462ZM1777.99 713.462H1778.99V661.475H1777.99H1776.99V713.462H1777.99ZM1777.99 661.475V662.475H1791V661.475V660.475H1777.99V661.475ZM1791 661.475H1790V726.475H1791H1792V661.475H1791ZM1791 648.525V649.525H1792V648.525H1791ZM1699.97 648.525H1698.97V649.525H1699.97V648.525ZM1699.97 635.513V634.513H1698.97V635.513H1699.97ZM1722.76 635.513V636.513H1723.76V635.513H1722.76ZM1722.76 628.975L1722.06 628.268L1721.76 628.56V628.975H1722.76ZM1755.26 596.475L1755.97 597.182L1757.68 595.475H1755.26V596.475ZM1699.97 596.475H1698.97V597.475H1699.97V596.475ZM1699.97 583.525V582.525H1698.97V583.525H1699.97ZM1791 583.525H1792V582.525H1791V583.525ZM1791 596.475V597.475H1792V596.475H1791ZM1768.28 596.475V595.475H1767.28V596.475H1768.28ZM1768.28 603.013L1768.98 603.72L1769.28 603.427V603.013H1768.28ZM1735.78 635.513L1735.07 634.806L1733.36 636.513H1735.78V635.513ZM1791 635.513H1792V634.513H1791V635.513ZM1791 648.525V647.525H1699.97V648.525V649.525H1791V648.525ZM1699.97 648.525H1700.97V635.513H1699.97H1698.97V648.525H1699.97ZM1699.97 635.513V636.513H1722.76V635.513V634.513H1699.97V635.513ZM1722.76 635.513H1723.76V628.975H1722.76H1721.76V635.513H1722.76ZM1722.76 628.975L1723.47 629.682L1755.97 597.182L1755.26 596.475L1754.56 595.768L1722.06 628.268L1722.76 628.975ZM1755.26 596.475V595.475H1699.97V596.475V597.475H1755.26V596.475ZM1699.97 596.475H1700.97V583.525H1699.97H1698.97V596.475H1699.97ZM1699.97 583.525V584.525H1791V583.525V582.525H1699.97V583.525ZM1791 583.525H1790V596.475H1791H1792V583.525H1791ZM1791 596.475V595.475H1768.28V596.475V597.475H1791V596.475ZM1768.28 596.475H1767.28V603.013H1768.28H1769.28V596.475H1768.28ZM1768.28 603.013L1767.57 602.306L1735.07 634.806L1735.78 635.513L1736.48 636.22L1768.98 603.72L1768.28 603.013ZM1735.78 635.513V636.513H1791V635.513V634.513H1735.78V635.513ZM1791 635.513H1790V648.525H1791H1792V635.513H1791ZM1791 544.551V545.551H1792V544.551H1791ZM1712.99 544.551V543.551H1711.99V544.551H1712.99ZM1712.99 570.576V571.576H1713.99V570.576H1712.99ZM1699.97 570.576H1698.97V571.576H1699.97V570.576ZM1699.97 505.576V504.576H1698.97V505.576H1699.97ZM1712.99 505.576H1713.99V504.576H1712.99V505.576ZM1712.99 531.538H1711.99V532.538H1712.99V531.538ZM1791 531.538H1792V530.538H1791V531.538ZM1791 544.551V543.551H1712.99V544.551V545.551H1791V544.551ZM1712.99 544.551H1711.99V570.576H1712.99H1713.99V544.551H1712.99ZM1712.99 570.576V569.576H1699.97V570.576V571.576H1712.99V570.576ZM1699.97 570.576H1700.97V505.576H1699.97H1698.97V570.576H1699.97ZM1699.97 505.576V506.576H1712.99V505.576V504.576H1699.97V505.576ZM1712.99 505.576H1711.99V531.538H1712.99H1713.99V505.576H1712.99ZM1712.99 531.538V532.538H1791V531.538V530.538H1712.99V531.538ZM1791 531.538H1790V544.551H1791H1792V531.538H1791ZM1790.24 479.106L1790.94 479.815L1790.95 479.814L1790.24 479.106ZM1777.48 491.802L1776.77 491.093L1776.77 491.095L1777.48 491.802ZM1758.5 492.627H1757.5V493.627H1758.5V492.627ZM1758.5 479.614V478.614H1757.5V479.614H1758.5ZM1770.18 479.614V480.614H1770.59L1770.89 480.321L1770.18 479.614ZM1777.99 471.807L1778.69 472.514L1778.99 472.221V471.807H1777.99ZM1777.99 448.384H1778.99V447.97L1778.69 447.677L1777.99 448.384ZM1770.18 440.576L1770.89 439.869L1770.59 439.576H1770.18V440.576ZM1759.77 440.576V439.576H1759.35L1759.06 439.872L1759.77 440.576ZM1752.03 448.384L1751.32 447.68L1751.03 447.972V448.384H1752.03ZM1751.2 479.106L1751.91 479.814L1751.2 479.106ZM1738.5 491.802L1737.8 491.095L1738.5 491.802ZM1713.5 491.802L1712.79 492.509L1713.5 491.802ZM1700.8 479.106L1701.51 478.399L1700.8 479.106ZM1700.8 441.147L1701.51 441.855L1701.51 441.853L1700.8 441.147ZM1713.5 428.389L1712.79 427.682L1712.79 427.683L1713.5 428.389ZM1732.47 427.627H1733.47V426.627H1732.47V427.627ZM1732.47 440.576V441.576H1733.47V440.576H1732.47ZM1720.79 440.576V439.576H1720.38L1720.09 439.869L1720.79 440.576ZM1712.99 448.384L1712.28 447.677L1711.99 447.97V448.384H1712.99ZM1712.99 471.807H1711.99V472.221L1712.28 472.514L1712.99 471.807ZM1720.79 479.614L1720.09 480.321L1720.38 480.614H1720.79V479.614ZM1731.21 479.614V480.614H1731.62L1731.91 480.321L1731.21 479.614ZM1739.01 471.807L1739.72 472.514L1740.01 472.221V471.807H1739.01ZM1791 477.139H1790C1790 477.712 1789.83 478.102 1789.53 478.399L1790.24 479.106L1790.95 479.814C1791.66 479.095 1792 478.173 1792 477.139H1791ZM1790.24 479.106L1789.53 478.398L1776.77 491.093L1777.48 491.802L1778.18 492.511L1790.94 479.815L1790.24 479.106ZM1777.48 491.802L1776.77 491.095C1776.41 491.462 1776 491.627 1775.51 491.627V492.627V493.627C1776.54 493.627 1777.45 493.242 1778.19 492.509L1777.48 491.802ZM1775.51 492.627V491.627H1758.5V492.627V493.627H1775.51V492.627ZM1758.5 492.627H1759.5V479.614H1758.5H1757.5V492.627H1758.5ZM1758.5 479.614V480.614H1770.18V479.614V478.614H1758.5V479.614ZM1770.18 479.614L1770.89 480.321L1778.69 472.514L1777.99 471.807L1777.28 471.1L1769.47 478.907L1770.18 479.614ZM1777.99 471.807H1778.99V448.384H1777.99H1776.99V471.807H1777.99ZM1777.99 448.384L1778.69 447.677L1770.89 439.869L1770.18 440.576L1769.47 441.283L1777.28 449.091L1777.99 448.384ZM1770.18 440.576V439.576H1759.77V440.576V441.576H1770.18V440.576ZM1759.77 440.576L1759.06 439.872L1751.32 447.68L1752.03 448.384L1752.74 449.088L1760.48 441.28L1759.77 440.576ZM1752.03 448.384H1751.03V477.139H1752.03H1753.03V448.384H1752.03ZM1752.03 477.139H1751.03C1751.03 477.629 1750.86 478.032 1750.49 478.399L1751.2 479.106L1751.91 479.814C1752.64 479.08 1753.03 478.172 1753.03 477.139H1752.03ZM1751.2 479.106L1750.49 478.399L1737.8 491.095L1738.5 491.802L1739.21 492.509L1751.91 479.814L1751.2 479.106ZM1738.5 491.802L1737.8 491.095C1737.43 491.462 1737.03 491.627 1736.54 491.627V492.627V493.627C1737.57 493.627 1738.48 493.242 1739.21 492.509L1738.5 491.802ZM1736.54 492.627V491.627H1715.46V492.627V493.627H1736.54V492.627ZM1715.46 492.627V491.627C1714.97 491.627 1714.57 491.462 1714.2 491.095L1713.5 491.802L1712.79 492.509C1713.52 493.242 1714.43 493.627 1715.46 493.627V492.627ZM1713.5 491.802L1714.2 491.095L1701.51 478.399L1700.8 479.106L1700.09 479.814L1712.79 492.509L1713.5 491.802ZM1700.8 479.106L1701.51 478.399C1701.14 478.032 1700.97 477.629 1700.97 477.139H1699.97H1698.97C1698.97 478.172 1699.36 479.08 1700.09 479.814L1700.8 479.106ZM1699.97 477.139H1700.97V443.052H1699.97H1698.97V477.139H1699.97ZM1699.97 443.052H1700.97C1700.97 442.621 1701.13 442.234 1701.51 441.855L1700.8 441.147L1700.09 440.44C1699.37 441.161 1698.97 442.044 1698.97 443.052H1699.97ZM1700.8 441.147L1701.51 441.853L1714.2 429.094L1713.5 428.389L1712.79 427.683L1700.09 440.442L1700.8 441.147ZM1713.5 428.389L1714.2 429.096C1714.5 428.799 1714.89 428.627 1715.46 428.627V427.627V426.627C1714.43 426.627 1713.51 426.963 1712.79 427.682L1713.5 428.389ZM1715.46 427.627V428.627H1732.47V427.627V426.627H1715.46V427.627ZM1732.47 427.627H1731.47V440.576H1732.47H1733.47V427.627H1732.47ZM1732.47 440.576V439.576H1720.79V440.576V441.576H1732.47V440.576ZM1720.79 440.576L1720.09 439.869L1712.28 447.677L1712.99 448.384L1713.69 449.091L1721.5 441.283L1720.79 440.576ZM1712.99 448.384H1711.99V471.807H1712.99H1713.99V448.384H1712.99ZM1712.99 471.807L1712.28 472.514L1720.09 480.321L1720.79 479.614L1721.5 478.907L1713.69 471.1L1712.99 471.807ZM1720.79 479.614V480.614H1731.21V479.614V478.614H1720.79V479.614ZM1731.21 479.614L1731.91 480.321L1739.72 472.514L1739.01 471.807L1738.31 471.1L1730.5 478.907L1731.21 479.614ZM1739.01 471.807H1740.01V443.052H1739.01H1738.01V471.807H1739.01ZM1739.01 443.052H1740.01C1740.01 442.537 1740.17 442.163 1740.48 441.855L1739.77 441.147L1739.07 440.44C1738.36 441.148 1738.01 442.043 1738.01 443.052H1739.01ZM1739.77 441.147L1740.48 441.855L1753.24 429.096L1752.53 428.389L1751.83 427.682L1739.07 440.44L1739.77 441.147ZM1752.53 428.389L1753.24 429.096C1753.54 428.799 1753.93 428.627 1754.5 428.627V427.627V426.627C1753.47 426.627 1752.54 426.963 1751.83 427.682L1752.53 428.389ZM1754.5 427.627V428.627H1775.51V427.627V426.627H1754.5V427.627ZM1775.51 427.627V428.627C1776.09 428.627 1776.48 428.799 1776.77 429.096L1777.48 428.389L1778.19 427.682C1777.47 426.963 1776.55 426.627 1775.51 426.627V427.627ZM1777.48 428.389L1776.77 429.096L1789.53 441.855L1790.24 441.147L1790.95 440.44L1778.19 427.682L1777.48 428.389ZM1790.24 441.147L1789.53 441.855C1789.84 442.163 1790 442.537 1790 443.052H1791H1792C1792 442.043 1791.65 441.148 1790.95 440.44L1790.24 441.147ZM1791 443.052H1790V477.139H1791H1792V443.052H1791Z" fill="#F64040" mask="url(#path-5-outside-3_130_60)"/>
 </svg>
-    
+    
 );
 
 
@@ -72,116 +72,157 @@ const PageBorderSVG = () => (
 
 // --- REUSABLE UI COMPONENTS ---
 
-// ## NEW ## Updated RegisterButton with the new SVG
 const RegisterButton = ({ onClick }) => (
-    <button onClick={onClick} className="relative w-full h-[50px] group text-white font-['KH Interference'] tracking-widest uppercase text-sm">
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 379 84" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11 1H368C373.523 1 378 5.47716 378 11V37.2012C378 39.9827 376.841 42.639 374.803 44.5312L356.591 61.4326L334.06 80.6143C332.251 82.154 329.953 83 327.577 83H51.4229C49.0474 83 46.7492 82.154 44.9404 80.6143L22.4082 61.4326L4.19727 44.5312C2.15851 42.639 1 39.9827 1 37.2012V11C1 5.47715 5.47715 1 11 1Z" stroke="#F64040" strokeWidth="2"/>
-        </svg>
-        <span className="relative z-10">Register Now</span>
-    </button>
+    <button onClick={onClick} className="relative w-full h-[50px] group text-white font-['KH Interference'] tracking-widest uppercase text-sm">
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 379 84" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 1H368C373.523 1 378 5.47716 378 11V37.2012C378 39.9827 376.841 42.639 374.803 44.5312L356.591 61.4326L334.06 80.6143C332.251 82.154 329.953 83 327.577 83H51.4229C49.0474 83 46.7492 82.154 44.9404 80.6143L22.4082 61.4326L4.19727 44.5312C2.15851 42.639 1 39.9827 1 37.2012V11C1 5.47715 5.47715 1 11 1Z" stroke="#F64040" strokeWidth="2"/>
+        </svg>
+        <span className="relative z-10">Register Now</span>
+    </button>
 );
 
 const EventCard = ({ event, onRegisterClick }) => (
-    <div className="relative w-full aspect-[464/636]">
-        <CardShapeSVG />
-        <div className="absolute inset-0 p-6 flex flex-col">
-            <div className="flex-grow space-y-2 mb-2">
-                 <h3 className="text-xl font-['KH Interference'] text-white leading-tight">{event.title}</h3>
-                 <p className="text-neutral-400 text-xs leading-snug">{event.description}</p>
-            </div>
-            <div className="flex-shrink-0 mt-auto">
-                <RegisterButton onClick={() => onRegisterClick(event)} />
-            </div>
-        </div>
-    </div>
+    <div className="relative w-full aspect-[464/636]">
+        <CardShapeSVG />
+        <div className="absolute inset-0 p-6 flex flex-col">
+            <div className="flex-grow space-y-2 mb-2">
+                 <h3 className="text-xl font-['KH Interference'] text-white leading-tight">{event.title}</h3>
+                 <p className="text-neutral-400 text-xs leading-snug">{event.description}</p>
+            </div>
+            <div className="flex-shrink-0 mt-auto">
+                <RegisterButton onClick={() => onRegisterClick(event)} />
+            </div>
+        </div>
+    </div>
 );
 
 
 const FilterNavigation = ({ activeFilter, setActiveFilter }) => (
-    <div className="flex justify-center -mt-5">
-        <FilterBorderSVG>
-            <button
-                onClick={() => setActiveFilter("technical")}
-                className={`w-[200px] h-[50px] rounded-full transition-all duration-300 text-sm uppercase font-['KH Interference'] tracking-wider flex items-center justify-center text-center leading-tight ${
-                    activeFilter === "technical" ? "bg-red-600 text-white shadow-[0_0_15px_rgba(246,64,64,0.7)]" : "text-neutral-300 hover:text-white"
-                }`}
-            >
-                <div>Technical<br/>Events</div>
-            </button>
-            <button
-                onClick={() => setActiveFilter("non-technical")}
-                className={`w-[200px] h-[50px] rounded-full transition-all duration-300 text-sm uppercase font-['KH Interference'] tracking-wider flex items-center justify-center text-center leading-tight ${
-                    activeFilter === "non-technical" ? "bg-red-600 text-white shadow-[0_0_15px_rgba(246,64,64,0.7)]" : "text-neutral-300 hover:text-white"
-                }`}
-            >
-                <div>Non-Technical<br/>Events</div>
-            </button>
-        </FilterBorderSVG>
-    </div>
+    <div className="flex justify-center -mt-5">
+        <FilterBorderSVG>
+            <button
+                onClick={() => setActiveFilter("technical")}
+                className={`w-[200px] h-[50px] rounded-full transition-all duration-300 text-sm uppercase font-['KH Interference'] tracking-wider flex items-center justify-center text-center leading-tight ${
+                    activeFilter === "technical" ? "bg-red-600 text-white shadow-[0_0_15px_rgba(246,64,64,0.7)]" : "text-neutral-300 hover:text-white"
+                }`}
+            >
+                <div>Technical<br/>Events</div>
+            </button>
+            <button
+                onClick={() => setActiveFilter("non-technical")}
+                className={`w-[200px] h-[50px] rounded-full transition-all duration-300 text-sm uppercase font-['KH Interference'] tracking-wider flex items-center justify-center text-center leading-tight ${
+                    activeFilter === "non-technical" ? "bg-red-600 text-white shadow-[0_0_15px_rgba(246,64,64,0.7)]" : "text-neutral-300 hover:text-white"
+                }`}
+            >
+                <div>Non-Technical<br/>Events</div>
+            </button>
+        </FilterBorderSVG>
+    </div>
 );
 
-
+// ## NEW ## Implemented the EventModal component
 const EventModal = ({ event, onClose }) => {
-    if (!event) return null;
-    return (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4" onClick={onClose}>
-            {/* Modal content */}
-        </div>
-    );
+    if (!event) return null;
+
+    // Stop propagation to prevent closing modal when clicking inside its content
+    const handleModalContentClick = (e) => {
+        e.stopPropagation();
+    };
+
+    return (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 font-['KH Interference']" onClick={onClose}>
+            <div
+                onClick={handleModalContentClick}
+                className="relative bg-[#1C1C1C] border border-[#F64040] rounded-2xl w-full max-w-lg p-6 md:p-8 text-white shadow-2xl shadow-red-600/20 animate-scale-in"
+            >
+                {/* Close Button */}
+                <button onClick={onClose} className="absolute top-3 right-3 text-neutral-400 hover:text-white transition-colors z-20">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                
+                <div className="flex flex-col md:flex-row gap-6">
+                    <img src={event.imageUrl} alt={event.title} className="w-full md:w-1/3 h-auto object-cover rounded-lg" />
+                    <div className="flex-grow">
+                        <h2 className="text-2xl lg:text-3xl uppercase tracking-wider text-red-500 mb-2">{event.title}</h2>
+                        <p className="text-neutral-300 text-sm mb-4">{event.description}</p>
+                        
+                        <div className="text-xs space-y-2 border-t border-neutral-700 pt-3 mt-3">
+                            <p><strong className="text-neutral-400 uppercase tracking-widest mr-2">Date:</strong> {event.date}</p>
+                            <p><strong className="text-neutral-400 uppercase tracking-widest mr-2">Venue:</strong> {event.venue}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="mt-6 text-center border-t border-dashed border-neutral-600 pt-4">
+                  <p className="text-lg text-green-400">REGISTRATION CONFIRMED!</p>
+                  <p className="text-neutral-400 text-sm">A confirmation will be sent to your email. See you there!</p>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 
-// --- MAIN PAGE COMPONENT (REVISED STRUCTURE) ---
+// --- MAIN PAGE COMPONENT ---
 const EventsPage = () => {
-    const [activeFilter, setActiveFilter] = useState("technical");
-    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [activeFilter, setActiveFilter] = useState("technical");
+    const [selectedEvent, setSelectedEvent] = useState(null);
 
-    const filteredEvents = useMemo(() => {
-        return allEvents.filter(event => event.category === activeFilter);
-    }, [activeFilter]);
+    const filteredEvents = useMemo(() => {
+        return allEvents.filter(event => event.category === activeFilter);
+    }, [activeFilter]);
 
-    return (
-        <>
-            <style>{`
-                .dot-grid { background-image: radial-gradient(circle at 1px 1px, rgba(200, 200, 200, 0.2) 1px, transparent 0); background-size: 20px 20px; }
-                .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-                .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-                .custom-scrollbar::-webkit-scrollbar-thumb { background: #F64040; border-radius: 3px; }
-            `}</style>
-            
-            {/* ## NEW ## Reduced padding to bring border closer to screen edges */}
-            <main className="h-screen w-screen relative overflow-hidden dot-grid font-['KH Interference'] flex items-center justify-center p-9">
-  <div className="relative w-full h-full max-w-screen-2xl">
-    {/* Page Border */}
-    <div className="absolute inset-0 z-0 pointer-events-none">
-      <PageBorderSVG />
-    </div>
+    return (
+        <>
+            <style>{`
+                .dot-grid { background-image: radial-gradient(circle at 1px 1px, rgba(200, 200, 200, 0.2) 1px, transparent 0); background-size: 20px 20px; }
+                .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+                .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: #F64040; border-radius: 3px; }
+                /* ## NEW ## Keyframes for modal animation */
+                @keyframes scale-in {
+                    from { transform: scale(0.95); opacity: 0; }
+                    to { transform: scale(1); opacity: 1; }
+                }
+                .animate-scale-in {
+                    animation: scale-in 0.3s ease-out forwards;
+                }
+            `}</style>
+            
+            <main className="h-screen w-screen relative overflow-hidden dot-grid font-['KH Interference'] flex items-center justify-center p-9">
+              <div className="relative w-full h-full max-w-screen-2xl">
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                  <PageBorderSVG />
+                </div>
 
-    {/* Content Wrapper */}
-    <div className="absolute inset-0 z-10 flex flex-col pt-0 px-0 md:px-30">
+                {/* Content Wrapper */}
+<div className="absolute inset-0 z-10 flex flex-col pt-0 px-0 md:px-30">
 
-      {/* ✅ Filter Bar moved to top and made sticky */}
-      <div className="flex-shrink-0 sticky top-0 bg-transparent z-0 pt-0">
+    {/* Filter Bar (No Changes) */}
+    <div className="flex-shrink-0 sticky top-0 bg-transparent z-0 pt-0">
         <FilterNavigation activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
-      </div>
-
-      {/* ✅ Events Grid - scrollbar hidden */}
-      <div className="flex-grow overflow-y-scroll no-scrollbar pt-6 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-40 px-4 md:px-6">
-          {filteredEvents.map(event => (
-            <EventCard key={event.id} event={event} onRegisterClick={setSelectedEvent} />
-          ))}
-        </div>
-      </div>
     </div>
-  </div>
-</main>
 
+    {/* ✅ MODIFIED: Events Grid - scrollbar hidden */}
+    <div className="flex-grow overflow-y-scroll no-scrollbar pt-16 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-40 px-4 md:px-6">
+            {filteredEvents.map(event => (
+                <EventCard key={event.id} event={event} onRegisterClick={setSelectedEvent} />
+            ))}
+        </div>
+    </div>
 
-            <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
-        </>
-    );
+    {/* ✅ NEW: Spacer div to lift the scrollable content above the bottom border */}
+    <div className="flex-shrink-0 h-24"></div>
+</div>
+              </div>
+            </main>
+
+            <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
+        </>
+    );
 };
 
 export default EventsPage;
