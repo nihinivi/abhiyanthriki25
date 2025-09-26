@@ -1,9 +1,14 @@
-import './App.css'
-import HeroSection from './components/HeroSection'
-import AboutSection from './components/AboutSection'
-import EventSection from './components/EventSection'
-import GallerySection from './components/GallerySection'
-import FooterSection from './components/FooterSection'
+
+import './App.css';
+import HeroSection from './components/HeroSection';
+import AboutSection from './components/AboutSection';
+import EventSection from './components/EventSection';
+import GallerySection from './components/GallerySection';
+import FooterSection from './components/FooterSection';
+import EventDetails from './components/EventDetails';
+import Navbar from './components/Navbar';
+import { Routes, Route } from 'react-router-dom';
+
 
 function App() {
   return (
@@ -17,13 +22,24 @@ function App() {
         backgroundPosition: 'center center',
       }}
     >
-      <HeroSection />
-      <AboutSection />
-      <EventSection />
-      <GallerySection />
-      <FooterSection />
+      <Navbar/>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <HeroSection />
+              <AboutSection />
+              <EventSection />
+              <GallerySection />
+              <FooterSection />
+            </>
+          }
+        />
+        <Route path="/eventdetails" element={<EventDetails />} />
+      </Routes>
     </div>
-  )
+  );
 }
 
 export default App

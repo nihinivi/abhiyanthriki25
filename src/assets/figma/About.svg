@@ -1,11 +1,4 @@
-import React from "react";
-
-// --- FOOTER SVG BACKGROUND ---
-// Please replace the content of this component with your actual Footer.svg code.
-const FooterBackgroundSVG = () => (
-<svg
- w-screen min-h-screen viewBox="0 0 1772 994" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
->
+<svg width="1772" height="994" viewBox="0 0 1772 994" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <path d="M1717 104C1747.38 104 1772 128.624 1772 159V784.191C1772 804.626 1755.43 821.191 1735 821.191H1626C1612.75 821.191 1602 831.937 1602 845.191V953C1602 973.435 1585.43 990 1565 990H931C900.624 990 876 965.376 876 935V356.505C876 336.07 892.565 319.505 913 319.505H1043.9C1081.45 319.505 1111.9 289.06 1111.9 251.505V123.494C1111.9 113.637 1118.97 104 1128.83 104H1717Z" fill="#F64040"/>
 <circle cx="1700" cy="921" r="51.5" stroke="#F64040" stroke-width="41"/>
 <mask id="path-3-inside-1_142_67" fill="white">
@@ -66,15 +59,3 @@ const FooterBackgroundSVG = () => (
 <image id="image4_142_67" width="100" height="100" preserveAspectRatio="none" xlink:href="data:image/png;base64,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"/>
 </defs>
 </svg>
-
-);
-
-const AboutSection = () => {
-  return (
-    <footer className="relative w-full text-white">
-      <FooterBackgroundSVG />
-    </footer>
-  );
-};
-
-export default AboutSection;
