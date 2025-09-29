@@ -1,13 +1,26 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const AnimatedBackground = () => {
     const canvasRef = useRef(null);
+    const [isMounted, setIsMounted] = useState(false);
+
+    // Delay the component's mounting to prevent race conditions with other components
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsMounted(true);
+        }, 100); // A small delay gives other components time to initialize first
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
+        // Guard clause: Do not run the animation effect until the component is mounted
+        if (!isMounted || !canvasRef.current) return;
+
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         let particles = [];
         let mouse = { x: null, y: null };
+        let animationFrameId;
 
         const setCanvasSize = () => {
             canvas.width = window.innerWidth;
@@ -24,7 +37,7 @@ const AnimatedBackground = () => {
 
         const handleResize = () => {
             setCanvasSize();
-            createParticles(); // Recreate particles for the new size
+            createParticles();
         };
         
         window.addEventListener('mousemove', handleMouseMove);
@@ -37,54 +50,51 @@ const AnimatedBackground = () => {
                 this.y = y;
                 this.size = size;
                 this.color = color;
-                this.weight = weight; // How much the mouse affects it
+                this.weight = weight;
                 this.baseX = this.x;
                 this.baseY = this.y;
-                this.opacity = Math.random() * 0.5 + 0.2; // Add random opacity
+                this.opacity = Math.random() * 0.5 + 0.2;
             }
 
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
                 ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
-                ctx.filter = 'blur(5px)'; // Apply a blur effect
+                ctx.filter = 'blur(5px)';
                 ctx.fill();
             }
 
             update() {
-                // --- MOUSE INTERACTION (PUSH & PULL) ---
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                
-                const pushRadius = 80;
-                const pullRadius = 250;
+                if (mouse.x !== null && mouse.y !== null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance > 0) {
+                        const pushRadius = 80;
+                        const pullRadius = 250;
 
-                // Push away if mouse is too close
-                if (distance < pushRadius) {
-                    let force = (pushRadius - distance) / pushRadius;
-                    this.x -= (dx / distance) * force * 5; // Push with more force
-                    this.y -= (dy / distance) * force * 5;
-                } 
-                // Pull towards mouse if it's within range
-                else if (distance < pullRadius && distance >= pushRadius) {
-                    let force = (pullRadius - distance) / pullRadius;
-                    this.x += (dx / distance) * force * this.weight;
-                    this.y += (dy / distance) * force * this.weight;
+                        if (distance < pushRadius) {
+                            let force = (pushRadius - distance) / pushRadius;
+                            this.x -= (dx / distance) * force * 5;
+                            this.y -= (dy / distance) * force * 5;
+                        } 
+                        else if (distance < pullRadius && distance >= pushRadius) {
+                            let force = (pullRadius - distance) / pullRadius;
+                            this.x += (dx / distance) * force * this.weight;
+                            this.y += (dy / distance) * force * this.weight;
+                        }
+                    }
                 }
                 
-                // --- "BREATHING" EFFECT (RETURN TO BASE) ---
-                // Gently pull back to original position when mouse is away
                 let returnForceX = (this.baseX - this.x) * 0.01;
                 let returnForceY = (this.baseY - this.y) * 0.01;
                 this.x += returnForceX;
                 this.y += returnForceY;
 
-                // --- CONTINUOUS RANDOM MOVEMENT ---
                 this.x += (Math.random() - 0.5) * 0.5;
                 this.y += (Math.random() - 0.5) * 0.5;
 
-                // Keep particles within the screen bounds
                 if (this.x > canvas.width + this.size) this.x = -this.size;
                 if (this.x < -this.size) this.x = canvas.width + this.size;
                 if (this.y > canvas.height + this.size) this.y = -this.size;
@@ -95,8 +105,8 @@ const AnimatedBackground = () => {
         // --- Initialization and Animation Loop ---
         const createParticles = () => {
             particles = [];
-            const particleCount = 250; // Increased particle count
-            const colors = ['246, 64, 64', '255, 100, 100']; // Two shades of red
+            const particleCount = 250;
+            const colors = ['246, 64, 64', '255, 100, 100'];
 
             for (let i = 0; i < particleCount; i++) {
                 const size = Math.random() * 4 + 1;
@@ -114,7 +124,7 @@ const AnimatedBackground = () => {
                 particles[i].update();
                 particles[i].draw();
             }
-            requestAnimationFrame(animate);
+            animationFrameId = requestAnimationFrame(animate);
         };
 
         createParticles();
@@ -122,12 +132,14 @@ const AnimatedBackground = () => {
 
         // --- Cleanup ---
         return () => {
+            cancelAnimationFrame(animationFrameId);
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('resize', handleResize);
         };
-    }, []);
+    }, [isMounted]); // This effect now runs only when isMounted is true
 
-    return <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full -z-10" />;
+    // Conditionally render the canvas
+    return isMounted ? <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full -z-10" /> : null;
 };
 
 export default AnimatedBackground;
