@@ -27,7 +27,7 @@ const HeroSection = () => {
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         {/* This is the main animated container that scales and fades */}
-        <motion.div style={{ opacity, scale }} className="relative w-full h-full">
+        <motion.div style={{ opacity, scale }} className="relative w-screen h-screen">
 
           {/* 1. Background Graphic (Bottom Layer) */}
           <div className="absolute inset-0 z-0">
@@ -35,7 +35,7 @@ const HeroSection = () => {
           </div>
 
           {/* 2. 3D Globe Animation (Middle Layer, centered and smaller) */}
-          <div className="absolute inset-0 flex items-center justify-center z-10">
+          <div className="absolute inset-5 flex items-center justify-center z-2">
             <div className="scale-75 md:scale-85"> {/* Makes the globe smaller */}
               <HeroAnimation />
             </div>

@@ -1,16 +1,6 @@
 import React, { useState, useMemo } from "react";
-
-// --- MOCK DATA ---
-const allEvents = [
-    { id: 1, title: "AI & Robotics Expo", category: "technical", description: "Explore the latest advancements in AI and Robotics. A full day of demos, talks, and workshops.", date: "Oct 10, 2025", venue: "Innovation Hall", imageUrl: "https://images.unsplash.com/photo-1677442135755-334341419a4e?auto=format&fit=crop&q=80&w=800" },
-    { id: 2, title: "Quantum Computing Summit", category: "technical", description: "A deep dive into the world of quantum computing with leading researchers and industry pioneers.", date: "Oct 12, 2025", venue: "Quantum Auditorium", imageUrl: "https://images.unsplash.com/photo-1532187643623-dbf2670316b8?auto=format&fit=crop&q=80&w=800" },
-    { id: 3, title: "CyberSec Conference", category: "technical", description: "Learn about the latest threats, vulnerabilities, and defense strategies from top security experts.", date: "Oct 15, 2025", venue: "SecureData Center", imageUrl: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=800" },
-    { id: 4, title: "Cloud Native & DevOps", category: "technical", description: "Mastering container orchestration, CI/CD pipelines, and infrastructure as code for modern applications.", date: "Oct 17, 2025", venue: "DevOps Dome", imageUrl: "https://images.unsplash.com/photo-1580894908361-967195033215?auto=format&fit=crop&q=80&w=800" },
-    { id: 5, title: "Gaming Tournament", category: "non-technical", description: "Compete in the annual e-sports tournament. Featuring popular titles, cash prizes, and a live audience.", date: "Oct 18, 2025", venue: "E-Sports Arena", imageUrl: "https://images.unsplash.com/photo-1609804231297-89024f3645b7?auto=format&fit=crop&q=80&w=800" },
-    { id: 6, title: "Startup Pitch Night", category: "non-technical", description: "Watch the brightest new startups pitch their ideas to a panel of venture capitalists.", date: "Oct 20, 2025", venue: "Venture Hub", imageUrl: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=800" },
-    { id: 7, title: "Tech Industry Social Mixer", category: "non-technical", description: "A casual social event for professionals in the tech industry to connect, share ideas, and build their network.", date: "Oct 22, 2025", venue: "The Network Lounge", imageUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" },
-    { id: 8, title: "Creative Design Workshop", category: "non-technical", description: "Unlock your creative potential with hands-on sessions on UI/UX design, branding, and digital art.", date: "Oct 25, 2025", venue: "Artisan's Hall", imageUrl: "https://images.unsplash.com/photo-1587440871875-191322ee64b0?auto=format&fit=crop&q=80&w=800" },
-];
+// ✅ IMPORT: Bring in the event data from its new file
+import { allEvents } from "../data/EventData";
 
 const FilterBorderSVG = ({ children }) => {
   return (
@@ -73,115 +63,121 @@ const PageBorderSVG = () => (
 // --- REUSABLE UI COMPONENTS ---
 
 const RegisterButton = ({ onClick }) => (
-    <button onClick={onClick} className="relative w-full h-[50px] group text-white font-['KH Interference'] tracking-widest uppercase text-sm">
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 379 84" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11 1H368C373.523 1 378 5.47716 378 11V37.2012C378 39.9827 376.841 42.639 374.803 44.5312L356.591 61.4326L334.06 80.6143C332.251 82.154 329.953 83 327.577 83H51.4229C49.0474 83 46.7492 82.154 44.9404 80.6143L22.4082 61.4326L4.19727 44.5312C2.15851 42.639 1 39.9827 1 37.2012V11C1 5.47715 5.47715 1 11 1Z" stroke="#F64040" strokeWidth="2"/>
-        </svg>
-        <span className="relative z-10">Register Now</span>
-    </button>
+    <button onClick={onClick} className="relative w-full h-[50px] group text-white font-['KH Interference'] tracking-widest uppercase text-sm">
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 379 84" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 1H368C373.523 1 378 5.47716 378 11V37.2012C378 39.9827 376.841 42.639 374.803 44.5312L356.591 61.4326L334.06 80.6143C332.251 82.154 329.953 83 327.577 83H51.4229C49.0474 83 46.7492 82.154 44.9404 80.6143L22.4082 61.4326L4.19727 44.5312C2.15851 42.639 1 39.9827 1 37.2012V11C1 5.47715 5.47715 1 11 1Z" stroke="#F64040" strokeWidth="2"/>
+        </svg>
+        {/* ✅ MODIFIED: The button in the card now says "View Details" */}
+        <span className="relative z-10">View Details</span>
+    </button>
 );
 
 const EventCard = ({ event, onRegisterClick }) => (
-    <div className="relative w-full aspect-[464/636]">
-        <CardShapeSVG />
-        <div className="absolute inset-0 p-6 flex flex-col">
-            <div className="flex-grow space-y-2 mb-2">
-                 <h3 className="text-xl font-['KH Interference'] text-white leading-tight">{event.title}</h3>
-                 <p className="text-neutral-400 text-xs leading-snug">{event.description}</p>
-            </div>
-            <div className="flex-shrink-0 mt-auto">
-                <RegisterButton onClick={() => onRegisterClick(event)} />
-            </div>
-        </div>
-    </div>
+    <div className="relative w-full aspect-[464/636]">
+        <CardShapeSVG />
+        <div className="absolute inset-0 p-6 flex flex-col">
+            <div className="flex-grow space-y-2 mb-2">
+                <h3 className="text-xl font-['KH Interference'] text-white leading-tight">{event.title}</h3>
+                <p className="text-neutral-400 text-xs leading-snug">{event.description}</p>
+            </div>
+            <div className="flex-shrink-0 mt-auto">
+                {/* The onClick now opens the modal */}
+                <RegisterButton onClick={() => onRegisterClick(event)} />
+            </div>
+        </div>
+    </div>
 );
 
 
 const FilterNavigation = ({ activeFilter, setActiveFilter }) => (
-    <div className="flex justify-center -mt-5">
-        <FilterBorderSVG>
-            <button
-                onClick={() => setActiveFilter("technical")}
-                className={`w-[200px] h-[50px] rounded-full transition-all duration-300 text-sm uppercase font-['KH Interference'] tracking-wider flex items-center justify-center text-center leading-tight ${
-                    activeFilter === "technical" ? "bg-red-600 text-white shadow-[0_0_15px_rgba(246,64,64,0.7)]" : "text-neutral-300 hover:text-white"
-                }`}
-            >
-                <div>Technical<br/>Events</div>
-            </button>
-            <button
-                onClick={() => setActiveFilter("non-technical")}
-                className={`w-[200px] h-[50px] rounded-full transition-all duration-300 text-sm uppercase font-['KH Interference'] tracking-wider flex items-center justify-center text-center leading-tight ${
-                    activeFilter === "non-technical" ? "bg-red-600 text-white shadow-[0_0_15px_rgba(246,64,64,0.7)]" : "text-neutral-300 hover:text-white"
-                }`}
-            >
-                <div>Non-Technical<br/>Events</div>
-            </button>
-        </FilterBorderSVG>
-    </div>
+    <div className="flex justify-center -mt-5">
+        <FilterBorderSVG>
+            <button
+                onClick={() => setActiveFilter("technical")}
+                className={`w-[200px] h-[50px] rounded-full transition-all duration-300 text-sm uppercase font-['KH Interference'] tracking-wider flex items-center justify-center text-center leading-tight ${
+                    activeFilter === "technical" ? "bg-red-600 text-white shadow-[0_0_15px_rgba(246,64,64,0.7)]" : "text-neutral-300 hover:text-white"
+                }`}
+            >
+                <div>Technical<br/>Events</div>
+            </button>
+            <button
+                onClick={() => setActiveFilter("non-technical")}
+                className={`w-[200px] h-[50px] rounded-full transition-all duration-300 text-sm uppercase font-['KH Interference'] tracking-wider flex items-center justify-center text-center leading-tight ${
+                    activeFilter === "non-technical" ? "bg-red-600 text-white shadow-[0_0_15px_rgba(246,64,64,0.7)]" : "text-neutral-300 hover:text-white"
+                }`}
+            >
+                <div>Non-Technical<br/>Events</div>
+            </button>
+        </FilterBorderSVG>
+    </div>
 );
 
-// ## NEW ## Implemented the EventModal component
+// ✅ MODIFIED: EventModal now links to an external URL
 const EventModal = ({ event, onClose }) => {
-    if (!event) return null;
+    if (!event) return null;
 
-    // Stop propagation to prevent closing modal when clicking inside its content
-    const handleModalContentClick = (e) => {
-        e.stopPropagation();
-    };
+    const handleModalContentClick = (e) => {
+        e.stopPropagation();
+    };
 
-    return (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 font-['KH Interference']" onClick={onClose}>
-            <div
-                onClick={handleModalContentClick}
-                className="relative bg-[#1C1C1C] border border-[#F64040] rounded-2xl w-full max-w-lg p-6 md:p-8 text-white shadow-2xl shadow-red-600/20 animate-scale-in"
-            >
-                {/* Close Button */}
-                <button onClick={onClose} className="absolute top-3 right-3 text-neutral-400 hover:text-white transition-colors z-20">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-                
-                <div className="flex flex-col md:flex-row gap-6">
-                    <img src={event.imageUrl} alt={event.title} className="w-full md:w-1/3 h-auto object-cover rounded-lg" />
-                    <div className="flex-grow">
-                        <h2 className="text-2xl lg:text-3xl uppercase tracking-wider text-red-500 mb-2">{event.title}</h2>
-                        <p className="text-neutral-300 text-sm mb-4">{event.description}</p>
-                        
-                        <div className="text-xs space-y-2 border-t border-neutral-700 pt-3 mt-3">
-                            <p><strong className="text-neutral-400 uppercase tracking-widest mr-2">Date:</strong> {event.date}</p>
-                            <p><strong className="text-neutral-400 uppercase tracking-widest mr-2">Venue:</strong> {event.venue}</p>
-                        </div>
-                    </div>
-                </div>
+    return (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 font-['KH Interference']" onClick={onClose}>
+            <div
+                onClick={handleModalContentClick}
+                className="relative bg-[#1C1C1C] border border-[#F64040] rounded-2xl w-full max-w-lg p-6 md:p-8 text-white shadow-2xl shadow-red-600/20 animate-scale-in"
+            >
+                <button onClick={onClose} className="absolute top-3 right-3 text-neutral-400 hover:text-white transition-colors z-20">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                
+                <div className="flex flex-col md:flex-row gap-6">
+                    <img src={event.imageUrl} alt={event.title} className="w-full md:w-1/3 h-auto object-cover rounded-lg" />
+                    <div className="flex-grow">
+                        <h2 className="text-2xl lg:text-3xl uppercase tracking-wider text-red-500 mb-2">{event.title}</h2>
+                        <p className="text-neutral-300 text-sm mb-4">{event.description}</p>
+                        
+                        <div className="text-xs space-y-2 border-t border-neutral-700 pt-3 mt-3">
+                            <p><strong className="text-neutral-400 uppercase tracking-widest mr-2">Date:</strong> {event.date}</p>
+                            <p><strong className="text-neutral-400 uppercase tracking-widest mr-2">Venue:</strong> {event.venue}</p>
+                        </div>
+                    </div>
+                </div>
 
-                <div className="mt-6 text-center border-t border-dashed border-neutral-600 pt-4">
-                  <p className="text-lg text-green-400">REGISTRATION CONFIRMED!</p>
-                  <p className="text-neutral-400 text-sm">A confirmation will be sent to your email. See you there!</p>
-                </div>
-            </div>
-        </div>
-    );
+                {/* The confirmation message is replaced with a link to the registration URL */}
+                <div className="mt-6 border-t border-dashed border-neutral-600 pt-4">
+                    <a 
+                        href={event.registrationUrl}
+                        target="_blank" // Opens the link in a new tab
+                        rel="noopener noreferrer" // Security best practice for external links
+                        className="block w-full text-center px-4 py-3 bg-green-600 text-white rounded-lg uppercase tracking-wider font-semibold hover:bg-green-500 transition-colors"
+                    >
+                        Register on KonfHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 
 // --- MAIN PAGE COMPONENT ---
 const EventsPage = () => {
-    const [activeFilter, setActiveFilter] = useState("technical");
-    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [activeFilter, setActiveFilter] = useState("technical");
+    const [selectedEvent, setSelectedEvent] = useState(null);
 
-    const filteredEvents = useMemo(() => {
-        return allEvents.filter(event => event.category === activeFilter);
-    }, [activeFilter]);
+    const filteredEvents = useMemo(() => {
+        return allEvents.filter(event => event.category === activeFilter);
+    }, [activeFilter]);
 
-    return (
-        <>
-            <style>{`
-                .dot-grid { background-image: radial-gradient(circle at 1px 1px, rgba(200, 200, 200, 0.2) 1px, transparent 0); background-size: 20px 20px; }
-                .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-                .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-                .custom-scrollbar::-webkit-scrollbar-thumb { background: #F64040; border-radius: 3px; }
-                /* ## NEW ## Keyframes for modal animation */
+    return (
+        <>
+            <style>{`
+                .dot-grid { background-image: radial-gradient(circle at 1px 1px, rgba(200, 200, 200, 0.2) 1px, transparent 0); background-size: 20px 20px; }
+                .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+                .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: #F64040; border-radius: 3px; }
                 @keyframes scale-in {
                     from { transform: scale(0.95); opacity: 0; }
                     to { transform: scale(1); opacity: 1; }
@@ -189,40 +185,36 @@ const EventsPage = () => {
                 .animate-scale-in {
                     animation: scale-in 0.3s ease-out forwards;
                 }
-            `}</style>
-            
-            <main className="h-screen w-screen relative overflow-hidden dot-grid font-['KH Interference'] flex items-center justify-center p-9">
-              <div className="relative w-full h-full max-w-screen-2xl">
-                <div className="absolute inset-0 z-0 pointer-events-none">
-                  <PageBorderSVG />
-                </div>
+            `}</style>
+            
+            <main className="h-screen w-screen relative overflow-hidden dot-grid font-['KH Interference'] flex items-center justify-center p-9">
+                <div className="relative w-full h-full max-w-screen-2xl">
+                    <div className="absolute inset-0 z-0 pointer-events-none">
+                        <PageBorderSVG />
+                    </div>
 
-                {/* Content Wrapper */}
-<div className="absolute inset-0 z-10 flex flex-col pt-0 px-0 md:px-30">
+                    <div className="absolute inset-0 z-10 flex flex-col pt-0 px-0 md:px-30">
+                        <div className="flex-shrink-0 sticky top-0 bg-transparent z-0 pt-0">
+                            <FilterNavigation activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
+                        </div>
 
-    {/* Filter Bar (No Changes) */}
-    <div className="flex-shrink-0 sticky top-0 bg-transparent z-0 pt-0">
-        <FilterNavigation activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
-    </div>
+                        <div className="flex-grow overflow-y-scroll no-scrollbar pt-16 pb-12">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-40 px-4 md:px-6">
+                                {filteredEvents.map(event => (
+                                    <EventCard key={event.id} event={event} onRegisterClick={setSelectedEvent} />
+                                ))}
+                            </div>
+                        </div>
 
-    {/* ✅ MODIFIED: Events Grid - scrollbar hidden */}
-    <div className="flex-grow overflow-y-scroll no-scrollbar pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-40 px-4 md:px-6">
-            {filteredEvents.map(event => (
-                <EventCard key={event.id} event={event} onRegisterClick={setSelectedEvent} />
-            ))}
-        </div>
-    </div>
+                        <div className="flex-shrink-0 h-24"></div>
+                    </div>
+                </div>
+            </main>
 
-    {/* ✅ NEW: Spacer div to lift the scrollable content above the bottom border */}
-    <div className="flex-shrink-0 h-24"></div>
-</div>
-              </div>
-            </main>
-
-            <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
-        </>
-    );
+            <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
+        </>
+    );
 };
+
 
 export default EventsPage;

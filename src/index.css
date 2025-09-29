@@ -16,7 +16,7 @@ body {
   margin: 0;
   font-family: "PressStart2P", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   background-color: #000000;
-  background-image: url('/src/assets/pattern.svg');
+  background-image: url("/src/assets/BG.jpg");
   background-repeat: repeat;
   background-size: 41%;
   background-position: center center;

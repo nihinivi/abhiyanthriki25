@@ -1,9 +1,9 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
 
-// Import the shared layout
+// Import the shared layout and the new animated background
 import Layout from './components/Layout';
+import AnimatedBackground from './components/AnimatedBackground'; // ✅ NEW
 
 // Lazily load page components
 const HomePage = lazy(() => import('./components/HomePage'));
@@ -11,21 +11,22 @@ const EventDetails = lazy(() => import('./components/EventDetails'));
 
 function App() {
   return (
-    // Use the class from App.css for the background
-    <div className="app-container">
-      {/* Suspense shows a fallback while lazy components are loading */}
-      <Suspense fallback={<div className="loading-fallback">Loading...</div>}>
-        <Routes>
-          {/* All routes are now nested inside the Layout component */}
-          <Route path="/" element={<Layout />}>
-            {/* The 'index' route is the default page for the parent path '/' */}
-            <Route index element={<HomePage />} />
-            <Route path="eventdetails" element={<EventDetails />} />
-            {/* You can add more pages here and they will all have the Navbar and Footer */}
-            {/* <Route path="contact" element={<ContactPage />} /> */}
-          </Route>
-        </Routes>
-      </Suspense>
+    // The main container no longer needs background styles as they are in index.css
+    <div className="relative min-h-screen w-full">
+      {/* ✅ NEW: The animated background is rendered here, behind all other content */}
+      <AnimatedBackground />
+      
+      {/* The rest of your app content will be layered on top */}
+      <div className="relative z-10">
+        <Suspense fallback={<div className="fixed inset-0 flex items-center justify-center text-white">Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<HomePage />} />
+              <Route path="eventdetails" element={<EventDetails />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </div>
     </div>
   );
 }
