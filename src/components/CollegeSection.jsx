@@ -87,13 +87,17 @@ const CollegeSection = () => {
 
   return (
     <section id="college" className="relative w-full text-white py-20 px-6 md:px-12 lg:px-24 overflow-hidden">
-      <svg className="absolute w-0 h-0">
-        <defs>
-          <clipPath id="college-shape-clip" clipPathUnits="objectBoundingBox">
-            <path d="M0.031,0.105 C0.014,0.105,0,0.13,0,0.16 V0.789 C0,0.81,0.01,0.826,0.021,0.826 H0.083 C0.09,0.826,0.096,0.837,0.096,0.85 V0.959 C0.096,0.979,0.105,0.996,0.117,0.996 H0.475 C0.492,0.996,0.506,0.971,0.506,0.941 V0.359 C0.506,0.338,0.497,0.321,0.485,0.321 H0.411 C0.39,0.321,0.373,0.291,0.373,0.253 V0.124 C0.373,0.114,0.369,0.105,0.363,0.105 H0.031 Z" />
-          </clipPath>
-        </defs>
-      </svg>
+    <svg className="absolute w-0 h-0">
+  <defs>
+    <clipPath id="college-shape-clip" clipPathUnits="objectBoundingBox">
+      {/* MODIFIED HERE: Added the transform attribute to the path */}
+      <path 
+        transform="scale(1.8, 1)" 
+        d="M0.031,0.105 C0.014,0.105,0,0.13,0,0.16 V0.789 C0,0.81,0.01,0.826,0.021,0.826 H0.083 C0.09,0.826,0.096,0.837,0.096,0.85 V0.959 C0.096,0.979,0.105,0.996,0.117,0.996 H0.475 C0.492,0.996,0.506,0.971,0.506,0.941 V0.359 C0.506,0.338,0.497,0.321,0.485,0.321 H0.411 C0.39,0.321,0.373,0.291,0.373,0.253 V0.124 C0.373,0.114,0.369,0.105,0.363,0.105 H0.031 Z" 
+      />
+    </clipPath>
+  </defs>
+</svg>
       
       <motion.div
         // **MODIFIED HERE**: Changed lg:grid-cols-5 to lg:grid-cols-2 for a 50/50 split
