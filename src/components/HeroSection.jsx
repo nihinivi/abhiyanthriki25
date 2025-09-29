@@ -1,5 +1,5 @@
-// src/components/HeroSection.js
-import HeroGraphic from './HeroGraphic'; // Adjust the import path as needed
+
+import HeroAnimation from './HeroAnimation'; // Adjust the import path as needed
 
 export default function HeroSection() {
   return (
@@ -10,8 +10,8 @@ export default function HeroSection() {
         - px-4 sm:px-6: Adds padding on the sides, which is more noticeable on mobile.
         - mx-auto: Centers the container.
       */}
-      <div className="w-full max-w-6xl px-4 mx-auto sm:px-6">
-        <HeroGraphic />
+      <div className="w-full h-full flex items-center justify-center">
+        <HeroAnimation/>
       </div>
     </section>
   )
