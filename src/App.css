@@ -24,3 +24,26 @@
 .card { padding: 0; }
 
 .read-the-docs { display: none; }
+
+/* Your existing styles in App.css */
+
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  color: white; /* Changed from black, which is invisible on a black background */
+  background-color: #000000;
+  background-image: url('/src/assets/pattern.svg');
+  background-size: 10%; /* Adjust size for responsiveness if needed */
+  background-repeat: repeat;
+  background-position: center center;
+}
+
+/* A simple fallback style for lazy loading */
+.loading-fallback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  color: white;
+}

@@ -3,7 +3,7 @@ import { motion, useInView, animate } from "framer-motion";
 import { FiUsers, FiTrendingUp, FiAward, FiMessageSquare } from 'react-icons/fi';
 
 // 1. IMPORT YOUR LOCAL COLLEGE IMAGE
-import collegeImageUrl from "../assets/figma/College.png";
+import collegeImageUrl from "../assets/figma/A3K.png";
 
 const statData = [
   { icon: <FiUsers />, value: "1.2K+", label: "Followers" },
