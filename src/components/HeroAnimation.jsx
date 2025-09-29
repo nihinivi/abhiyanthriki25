@@ -26,7 +26,7 @@ function Globe() {
 
 export default function HeroSection() {
   return (
-<div className="relative w-screen h-screen bg-black bg-[url('/pattern.svg')] bg-repeat bg-[length:100px_100px] flex items-center justify-center">
+<div className="relative w-screen h-screen  bg-repeat bg-[length:100px_100px] flex items-center justify-center">
   <div className="relative w-[90vw] max-w-[900px] aspect-square">
     <Canvas className="absolute inset-0" camera={{ position: [0, 0, 10], fov: 50 }}>
       <ambientLight intensity={0.5} />
