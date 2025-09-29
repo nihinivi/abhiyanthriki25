@@ -34,24 +34,32 @@ const HeroSection = () => {
             <HeroGraphic />
           </div>
 
-          {/* 2. 3D Globe Animation (Middle Layer, centered) */}
+          {/* 2. 3D Globe Animation (Middle Layer, centered and smaller) */}
           <div className="absolute inset-0 flex items-center justify-center z-10">
-            <HeroAnimation />
+            <div className="scale-75 md:scale-85"> {/* Makes the globe smaller */}
+              <HeroAnimation />
+            </div>
           </div>
 
           {/* 3. Text Content (Top Layer) */}
           <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white pointer-events-none z-20">
-            <h1 className="font-['KH Interference'] text-5xl md:text-8xl lg:text-9xl tracking-wider uppercase">
-              Abhiyanthriki <span className="text-[#F64040]">2025</span>
-            </h1>
-          </div>
-          
-          <div className="absolute bottom-4 md:bottom-8 left-0 right-0 mx-auto w-full max-w-6xl px-4 sm:px-10 pointer-events-none z-20">
-            <div className="flex flex-col md:flex-row justify-between items-center text-white font-['KH Interference'] text-xs md:text-base tracking-widest uppercase">
-              <p>Oct 10 & 11</p>
-              <p className="mt-2 md:mt-0">Rajagiri School of Engineering and Technology</p>
+            <div className="flex flex-col items-center">
+              <h1 className="font-['KH Interference'] text-6xl md:text-9xl lg:text-[10rem] leading-none tracking-wider uppercase">
+                Abhiyanthriki
+              </h1>
+              <h2 className="font-['KH Interference'] text-5xl md:text-8xl lg:text-[8rem] leading-none tracking-wider uppercase text-[#F64040]">
+                2025
+              </h2>
             </div>
           </div>
+          
+          {/* College Name and Date positioned at bottom corners */}
+          <p className="absolute bottom-4 md:bottom-8 left-4 md:left-10 font-['KH Interference'] text-xs md:text-base tracking-widest uppercase text-white pointer-events-none z-20">
+            Rajagiri School of Engineering and Technology
+          </p>
+          <p className="absolute bottom-4 md:bottom-8 right-4 md:right-10 font-['KH Interference'] text-xs md:text-base tracking-widest uppercase text-white pointer-events-none z-20">
+            Oct 10 & 11
+          </p>
 
           {/* 4. Animated Scroll Down Arrow */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
