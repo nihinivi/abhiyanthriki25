@@ -1,9 +1,9 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import { motion, useInView, animate } from "framer-motion";
 import { FiUsers, FiTrendingUp, FiAward, FiMessageSquare } from 'react-icons/fi';
 
-// Placeholder for the college image. Replace with your actual image path.
-const collegeImageUrl = "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1000";
+// 1. IMPORT YOUR LOCAL COLLEGE IMAGE
+import collegeImageUrl from "../assets/figma/College.png";
 
 const statData = [
   { icon: <FiUsers />, value: "1.2K+", label: "Followers" },
@@ -11,6 +11,40 @@ const statData = [
   { icon: <FiAward />, value: "15.4K+", label: "Account Reached" },
   { icon: <FiMessageSquare />, value: "28K+", label: "Interactions" },
 ];
+
+// 2. ANIMATED COUNTER COMPONENT
+// This component animates a number from 0 to its target value when it becomes visible.
+const AnimatedCounter = ({ value }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const numericValue = parseFloat(value.replace(/[^\d.]/g, ''));
+  const suffix = value.replace(/[\d.]/g, '');
+
+  useEffect(() => {
+    if (isInView) {
+      animate(0, numericValue, {
+        duration: 2,
+        onUpdate(latest) {
+          if(ref.current) {
+            // Handle floating point precision
+            if (value.includes('.')) {
+              ref.current.textContent = latest.toFixed(1);
+            } else {
+              ref.current.textContent = Math.round(latest);
+            }
+          }
+        }
+      });
+    }
+  }, [isInView, value, numericValue]);
+
+  return (
+    <p className="text-2xl font-semibold">
+      <span ref={ref}>0</span>{suffix}
+    </p>
+  );
+};
+
 
 const StatCard = ({ icon, value, label }) => (
   <div className="relative p-4 border border-[#F64040]/50">
@@ -23,7 +57,7 @@ const StatCard = ({ icon, value, label }) => (
     <div className="flex items-center space-x-4">
       <div className="text-3xl text-[#F64040]">{icon}</div>
       <div>
-        <p className="text-2xl font-semibold">{value}</p>
+        <AnimatedCounter value={value} />
         <p className="text-sm text-gray-400">{label}</p>
       </div>
     </div>
@@ -53,9 +87,22 @@ const AboutSection = () => {
     },
   };
 
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.8, x: 50 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 1, 0.5, 1] // A smoother ease-out curve
+      },
+    },
+  };
+
   return (
     <section id="about" className="relative w-full text-white py-20 px-6 md:px-12 lg:px-24 overflow-hidden">
-      {/* This SVG is now hidden and only used to define the clip-path for the image */}
+      {/* This SVG is used to define the clip-path for the image */}
       <svg className="absolute w-0 h-0">
         <defs>
           <clipPath id="about-shape-clip" clipPathUnits="objectBoundingBox">
@@ -66,24 +113,24 @@ const AboutSection = () => {
       
       {/* Main content grid */}
       <motion.div
-        className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 items-center max-w-7xl mx-auto"
+        className="relative z-10 grid grid-cols-1 lg:grid-cols-5 gap-12 items-center max-w-7xl mx-auto"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         {/* Left Column: Text Content */}
-        <div className="lg:col-span-3 flex flex-col order-2 md:order-1">
+        <div className="lg:col-span-2 flex flex-col order-2 lg:order-1">
           <motion.div variants={itemVariants}>
-            <h2 className="text-2xl text-[#F64040] font-['KH Interference'] tracking-widest">ABOUT</h2>
-            <h1 className="text-5xl md:text-6xl font-['KH Interference'] mt-1 mb-6">ABHIYANTHRIKI</h1>
+            <h2 className="text-2xl text-[#F64040] font-'KH_Interference' tracking-widest">ABOUT</h2>
+            <h1 className="text-5xl md:text-6xl font-'KH_Interference' mt-1 mb-6">ABHIYANTHRIKI</h1>
           </motion.div>
-          <motion.p className="font-['KH Interference'] text-gray-300 mb-6" variants={itemVariants}>
+          <motion.p className="font-'KH_Interference' text-gray-300 mb-6" variants={itemVariants}>
             Abhiyanthriki, the biennial technical festival of Rajagiri School of Engineering and Technology (RSET), is a premier platform celebrating academic brilliance, cutting-edge technology, and creative innovation. Spanning two dynamic days, it showcases a vibrant mix of technical and non-technical contests, engaging workshops, exhibitions, and stalls, drawing participation from across the region.
           </motion.p>
-          <motion.p className="font-['KH Interference'] text-gray-300 mb-8" variants={itemVariants}>
+          {/* <motion.p className="font-'KH_Interference' text-gray-300 mb-8" variants={itemVariants}>
             This year's theme, "Tech Renaissance", marks a digital rebirth - blending engineering, technology, art, and design into a unique convergence of intellect and imagination. More than just a fest, Abhiyanthriki is a distinguished stage where academia meets industry, and future leaders meet opportunity.
-          </motion.p>
+          </motion.p> */}
           
           {/* Stats Grid */}
           <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-6" variants={itemVariants}>
@@ -94,8 +141,12 @@ const AboutSection = () => {
         </div>
 
         {/* Right Column: College Image */}
-        <motion.div className="lg:col-span-2 w-full h-96 md:h-full order-1 md:order-2" variants={itemVariants}>
-                      <img
+        <motion.div 
+          className="lg:col-span-2 w-200 h-96 md:h-[600px] order-1 lg:order-2"
+          variants={imageVariants}
+        >
+          
+          <img
             src={collegeImageUrl}
             alt="Rajagiri School of Engineering and Technology"
             className="w-full h-full object-cover"
