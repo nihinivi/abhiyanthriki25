@@ -4,8 +4,7 @@ import { FiArrowDown } from "react-icons/fi";
 
 import HeroGraphicMobile from "./HeroGraphic2";
 import HeroGraphicWeb from "./HeroGraphic";
-import HeroAnimation from "./HeroAnimation";
-import TextImage from "../assets/figma/Text.png"; // Make sure path is correct
+import HeroAnimation from "./HeroAnimation"; // Make sure path is correct
 
 const HeroSection = () => {
     const targetRef = useRef(null);

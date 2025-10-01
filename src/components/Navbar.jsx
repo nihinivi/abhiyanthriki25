@@ -36,7 +36,8 @@ const EventsIcon = () => (
 
 const Navbar = () => {
   return (
-    <header className="fixed bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 z-50 w-[90%] md:w-auto">
+    // CHANGE: Replaced "w-[90%] md:w-auto" with just "w-auto"
+    <header className="fixed bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 z-50 w-auto">
       <nav
         className="flex items-center justify-between md:gap-6 gap-3 px-3 md:px-4 py-2 md:py-3 rounded-full border border-neutral-700 bg-black/50 backdrop-blur-lg"
         style={{
