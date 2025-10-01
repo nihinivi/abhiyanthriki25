@@ -1,28 +1,46 @@
 import React, { useState, useMemo } from "react";
 import { allEvents } from "../data/EventData";
 
-// --- SVG SHAPE COMPONENTS ---
+// --- SVG SHAPE COMPONENTS (Unchanged) ---
 
-const EventCardClipPath = () => (
+const ImageClipPathSVG = () => (
     <svg width="0" height="0" className="absolute">
         <defs>
-            <clipPath id="event-card-clip" clipPathUnits="objectBoundingBox">
-                <path d="M0.00215517 0.126572V0.0298742C0.00215517 0.0142451 0.0195245 0.00157233 0.0410011 0.00157233H0.24184C0.247987 0.00157233 0.253928 0.0026338 0.259502 0.00466981L0.367246 0.0448252C0.37282 0.0468612 0.378761 0.0480189 0.384808 0.0480189H0.615192C0.621239 0.0480189 0.62718 0.0468612 0.632754 0.0448252L0.740498 0.00466981C0.746072 0.0026338 0.752013 0.00157233 0.75816 0.00157233H0.959074C0.980551 0.00157233 0.997845 0.0142451 0.997845 0.0298742V0.859984C0.997845 0.868158 0.993264 0.875883 0.985223 0.880942L0.876781 0.952567C0.86874 0.957626 0.85966 0.960691 0.849568 0.960691H0.150432C0.14034 0.960691 0.13126 0.957626 0.123219 0.952567L0.0147773 0.880942C0.00673629 0.875883 0.00215517 0.868158 0.00215517 0.859984V0.126572Z" />
+            {/* This clip path is for the card that will be on the LEFT */}
+            <clipPath id="left-card-clip" clipPathUnits="objectBoundingBox">
+                {/* This path needs to match the shape of your new left card if you want to clip it perfectly */}
+                {/* For now, I'm keeping the original path that worked for the previous left card. */}
+                {/* If you want the *original RightCardSVG shape* to be on the left and clip an image,
+                    you'd need to put the path from RightCardSVG here and adjust for objectBoundingBox */}
+                <path d="M0.94898 0 C0.977157 0,1 0.0348149,1 0.0777605 V0.92224 V0.92224 C1 0.965185,0.977157 1,0.94898 1 H0.618206 C0.602442 1,0.591837 0.97037,0.591837 0.947123 V0.771384 C0.591837 0.717664,0.563512 0.675,0.528571 0.675 H0.027551 C0.0143694 0.675,0.000092305 0.660493,0 0.640807 V0.177294 C0 0.161833,0.00822335 0.149299,0.0183673 0.149299 H0.0795918 C0.0897358 0.149299,0.0979592 0.13686,0.0979592 0.121306 V0.0280093 C0.0979592 0.0125331,0.106183 0,0.116327 0 H0.94898 Z" />
             </clipPath>
         </defs>
     </svg>
 );
 
-const CardShapeSVG = () => (
-    <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 464 636" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 80.5V19C1 9.05888 9.05887 1 19 1H112.169C115.016 1 117.822 1.67525 120.357 2.9703L170.393 28.5297C172.928 29.8248 175.734 30.5 178.581 30.5H285.419C288.266 30.5 291.072 29.8247 293.607 28.5297L343.643 2.9703C346.178 1.67525 348.984 1 351.831 1H445C454.941 1 463 9.05887 463 19V547.07C463 552.122 460.877 556.942 457.148 560.352L406.852 605.648C403.123 609.058 398.303 611 393.25 611H70.75C65.6971 611 60.8766 609.058 57.1484 605.648L6.85163 560.352C3.12343 556.942 1 552.122 1 547.07V80.5Z" 
-        className="stroke-neutral-700/50 group-hover:stroke-red-500 transition-all duration-300" 
-        strokeWidth="2" />
+const OriginalLeftCardBorderSVG = () => (
+    <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 980 643" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* The strokeWidth has been increased from 2 to 3 to make the border larger */}
+        <path d="M930 0C957.614 0 980 22.3858 980 50V593C980 620.614 957.614 643 930 643H605.842C590.393 643 580 624.448 580 609V496C580 461.758 552.242 434 518 434H27C14.082 434 9.04588e-05 425.157 0 412.239V114C0 104.059 8.05888 96 18 96H78C87.9411 96 96 87.9411 96 78V18C96 8.05888 104.059 0 114 0H930Z" stroke="#F64040" strokeWidth="3" />
+    </svg>
+);
+const OriginalRightCardSVG = () => (
+    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1057 643" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* The strokeWidth has been increased from 2 to 3 to make the border larger */}
+        <path d="M495 0C504.941 0 513 8.05888 513 18V78C513 87.9411 521.059 96 531 96H596C605.941 96 614 104.059 614 114V469C614 486.673 628.327 501 646 501H1025C1042.67 501 1057 515.327 1057 533V611C1057 628.673 1042.67 643 1025 643H28C12.536 643 0 630.464 0 615V190.522C0 171.203 21.1801 158 40.5 158H124.5C175.034 158 216 117.034 216 66.5C216 65.1325 215.97 63.7718 215.91 62.4189C214.8 37.1175 232.396 0 257.722 0H495Z" fill="#1C1C1C" stroke="#F64040" strokeWidth="3" />
     </svg>
 );
 
 const DesktopPageBorderSVG = () => (
-    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1810 929" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+        className="absolute inset-0 w-full h-full"
+        // The viewBox has been updated to match your new SVG's dimensions
+        viewBox="0 0 1810 929"
+        fill="none"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        {/* The content below is the new SVG code you provided */}
         <mask id="path-1-inside-1_130_60" fill="white">
             <path d="M1779 3C1787.28 3 1794 9.71573 1794 18V914C1794 922.284 1787.28 929 1779 929H31C22.7157 929 16 922.284 16 914V18C16 9.71573 22.7157 3 31 3H512C536.301 3 556 22.6995 556 47C556 66.8823 572.118 83 592 83H1217C1236.88 83 1253 66.8823 1253 47C1253 22.6995 1272.7 3 1297 3H1779Z" />
         </mask>
@@ -42,34 +60,68 @@ const DesktopPageBorderSVG = () => (
 
 const MobilePageBorderSVG = () => (
     <svg className="absolute inset-0 w-full h-full" viewBox="0 0 364 742" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M349 29C357.284 29.0002 364 35.7158 364 44V726.83C364 735.114 357.284 741.83 349 741.83H26C17.7157 741.83 11 735.114 11 726.83V44C11 35.7157 17.7157 29 26 29H54.5879C60.1107 29 64.5879 33.4772 64.5879 39C64.5879 58.8822 80.7056 75 100.588 75H273.588C293.47 75 309.588 58.8822 309.588 39C309.588 33.4772 314.065 29 319.588 29H349Z" stroke="#F64040" strokeWidth="2" />
+        {/* Added rx="20" to create curved corners on the rectangle. You can adjust this value for more or less curve. */}
+        <rect x="1" y="1" width="362" height="740" rx="20" stroke="#F64040" strokeWidth="2" />
     </svg>
 );
 
+const DetailsRegisterButton = ({ href }) => (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="relative w-full max-w-[280px] h-[58px] group text-white font-['KH Interference'] tracking-widest uppercase text-sm flex items-center justify-center mx-auto">
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 285 58" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 1H275C279.971 1 284 5.02944 284 10V31.1021C284 32.2435 283.606 33.3444 282.88 34.2217L273.231 45.3981L262.041 56.622C261.268 57.47 260.16 58 258.998 58H26.0019C24.8402 58 23.7323 57.47 22.9593 56.622L11.769 45.3981L2.11984 34.2217C1.39383 33.3444 1 32.2435 1 31.1021V10C1 5.02944 5.02944 1 10 1Z" stroke="#F64040" strokeWidth="2" />
+        </svg>
+        <span className="relative z-10">Register Now</span>
+    </a>
+);
 
 const ViewDetailsButton = ({ onClick }) => (
-    <button onClick={onClick} className="relative w-full h-[50px] group text-white font-['KH_Interference'] tracking-widest uppercase text-sm">
+    <button onClick={onClick} className="relative w-full h-[50px] group text-white font-['KH Interference'] tracking-widest uppercase text-sm">
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 379 84" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11 1H368C373.523 1 378 5.47716 378 11V37.2012C378 39.9827 376.841 42.639 374.803 44.5312L356.591 61.4326L334.06 80.6143C332.251 82.154 329.953 83 327.577 83H51.4229C49.0474 83 46.7492 82.154 44.9404 80.6143L22.4082 61.4326L4.19727 44.5312C2.15851 42.639 1 39.9827 1 37.2012V11C1 5.47715 5.47715 1 11 1Z" className="stroke-red-500/80 group-hover:stroke-red-500 transition-all" strokeWidth="2" />
+            <path d="M11 1H368C373.523 1 378 5.47716 378 11V37.2012C378 39.9827 376.841 42.639 374.803 44.5312L356.591 61.4326L334.06 80.6143C332.251 82.154 329.953 83 327.577 83H51.4229C49.0474 83 46.7492 82.154 44.9404 80.6143L22.4082 61.4326L4.19727 44.5312C2.15851 42.639 1 39.9827 1 37.2012V11C1 5.47715 5.47715 1 11 1Z" stroke="#F64040" strokeWidth="2" />
         </svg>
         <span className="relative z-10">View Details</span>
     </button>
 );
 
+const CardShapeSVG = () => (
+    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 464 636" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 80.5V19C1 9.05888 9.05887 1 19 1H112.169C115.016 1 117.822 1.67525 120.357 2.9703L170.393 28.5297C172.928 29.8248 175.734 30.5 178.581 30.5H285.419C288.266 30.5 291.072 29.8247 293.607 28.5297L343.643 2.9703C346.178 1.67525 348.984 1 351.831 1H445C454.941 1 463 9.05887 463 19V547.07C463 552.122 460.877 556.942 457.148 560.352L406.852 605.648C403.123 609.058 398.303 611 393.25 611H70.75C65.6971 611 60.8766 609.058 57.1484 605.648L6.85163 560.352C3.12343 556.942 1 552.122 1 547.07V80.5Z" fill="#1C1C1C" stroke="#333333" strokeWidth="1" />
+    </svg>
+);
+
+// --- MODIFIED & NEW COMPONENTS ---
+
+const EventCard = ({ event, onViewDetailsClick }) => (
+    // ✨ CHANGE: "w-full" is now "w-11/12" to make the card narrower.
+    // "mx-auto" is added to center the card within its container (the grid cell).
+    <div className="relative w-11/12 mx-auto aspect-[464/636]">
+        <CardShapeSVG />
+        <div className="absolute inset-0 p-6 flex flex-col">
+            <div className="flex-grow space-y-2 mb-2">
+                <h3 className="text-xl font-['KH Interference'] text-white leading-tight">{event.title}</h3>
+                <p className="text-neutral-400 text-xs leading-snug">{event.description.substring(0, 150)}...</p>
+            </div>
+            <div className="flex-shrink-0 mt-auto">
+                <ViewDetailsButton onClick={() => onViewDetailsClick(event)} />
+            </div>
+        </div>
+    </div>
+);
 
 const FilterNavigation = ({ activeFilter, setActiveFilter }) => (
+    // This component is integrated as requested and is responsive.
     <div className="flex justify-center -mt-5 md:-mt-2">
         <div className="relative flex items-center justify-center p-1.5 border-2 border-white rounded-full mx-auto w-full max-w-[300px] md:max-w-md bg-black/30">
             <div className={`absolute top-1/2 -translate-y-1/2 left-1.5 w-[calc(50%-6px)] h-[calc(100%-12px)] bg-red-600 rounded-full transition-transform duration-300 ease-out ${activeFilter === 'non-technical' ? 'translate-x-full' : 'translate-x-0'}`}></div>
             <button
                 onClick={() => setActiveFilter("technical")}
-                className="relative flex-1 py-2 text-white text-xs md:text-sm uppercase font-['KH_Interference'] tracking-wider text-center"
+                className="relative flex-1 py-2 text-white text-xs md:text-sm uppercase font-['KH Interference'] tracking-wider text-center"
             >
                 Technical Events
             </button>
             <button
                 onClick={() => setActiveFilter("non-technical")}
-                className="relative flex-1 py-2 text-white text-xs md:text-sm uppercase font-['KH_Interference'] tracking-wider text-center"
+                className="relative flex-1 py-2 text-white text-xs md:text-sm uppercase font-['KH Interference'] tracking-wider text-center"
             >
                 Non-Technical Events
             </button>
@@ -77,48 +129,77 @@ const FilterNavigation = ({ activeFilter, setActiveFilter }) => (
     </div>
 );
 
+const EventModal = ({ event, onClose }) => {
+    if (!event) return null;
+    const handleModalContentClick = (e) => e.stopPropagation();
 
-// --- EVENT CARD & PAGE ---
+    return (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4" onClick={onClose}>
+            {/* ImageClipPathSVG is now defined globally, but the ID needs to target the correct path */}
+            <ImageClipPathSVG />
 
-const EventCard = ({ event, onViewDetailsClick }) => (
-    <div className="relative w-full aspect-[464/636] group">
-        <img 
-            src={event.imageUrl} 
-            alt={event.title} 
-            className="w-full h-full object-cover"
-            style={{ clipPath: 'url(#event-card-clip)' }} 
-        />
-        
-        <CardShapeSVG />
+            {/* --- DESKTOP LAYOUT --- */}
+            {/* SWAPPED THE ORDER AND ADJUSTED STYLES FOR OVERLAP */}
+            <div onClick={handleModalContentClick} className="relative w-full max-w-6xl mx-auto hidden md:flex flex-row items-center justify-center animate-scale-in">
 
-        <div className="absolute inset-0 p-6 flex flex-col justify-end">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ clipPath: 'url(#event-card-clip)' }}></div>
-            
-            <div className="relative z-10 space-y-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
-                <div>
-                    <h3 className="text-xl font-['KH_Interference'] text-white leading-tight">{event.title}</h3>
-                    <p className="text-neutral-400 text-xs leading-snug">{event.description.substring(0, 80)}...</p>
+                {/* NEW LEFT CARD - Uses OriginalRightCardSVG */}
+                <div className="relative w-1/2 max-w-[550px] aspect-[1057/643] mr-[-120px] z-10"> {/* Adjusted margin and z-index */}
+                    <OriginalRightCardSVG /> {/* This is the SVG that was originally on the right */}
+                    <div className="absolute inset-0 flex flex-col justify-between text-white font-['KH Interference'] p-12 lg:p-20">
+                        {/* Content for the "new" left card */}
+                        <div className="space-y-4">
+                            <h2 className="text-2xl lg:text-3xl uppercase tracking-wider text-white mb-2">{event.title}</h2>
+                            <p className="text-neutral-300 text-sm leading-relaxed max-h-[200px] overflow-y-auto custom-scrollbar pr-2">{event.description}</p>
+                        </div>
+                        <div className="mt-6">
+                            <DetailsRegisterButton href={event.registrationUrl} />
+                        </div>
+                    </div>
                 </div>
-                <div className="w-full">
-                    <ViewDetailsButton onClick={() => onViewDetailsClick(event)} />
+
+                {/* NEW RIGHT CARD - Uses OriginalLeftCardBorderSVG and clips the image */}
+                <div className="relative w-1/2 max-w-[500px] aspect-[980/643] z-20"> {/* Adjusted z-index */}
+                    {/* The image here will now have the clip-path that was previously for the left card */}
+                    <img src={event.imageUrl} alt={event.title} className="w-full h-full object-cover" style={{ clipPath: 'url(#left-card-clip)' }} />
+                    <OriginalLeftCardBorderSVG /> {/* This is the SVG that was originally on the left */}
                 </div>
             </div>
+
+            {/* --- MOBILE LAYOUT --- */}
+            <div onClick={handleModalContentClick} className="relative w-full max-w-sm md:hidden bg-[#1C1C1C] border-2 border-[#F64040] rounded-2xl animate-scale-in flex flex-col p-6 space-y-4">
+                <img src={event.imageUrl} alt={event.title} className="w-full h-auto aspect-video object-cover rounded-lg" />
+                <div className="flex-grow flex flex-col justify-between overflow-hidden">
+                    <div className="space-y-2 overflow-y-auto custom-scrollbar pr-2">
+                        <h2 className="text-2xl uppercase tracking-wider text-white">{event.title}</h2>
+                        <p className="text-neutral-300 text-sm leading-normal">{event.description}</p>
+                    </div>
+                    <div className="mt-6 flex-shrink-0">
+                        <DetailsRegisterButton href={event.registrationUrl} />
+                    </div>
+                </div>
+            </div>
+
+            <button onClick={onClose} className="absolute top-4 right-4 md:top-6 md:right-6 text-neutral-400 hover:text-white transition-colors z-50">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
         </div>
-    </div>
-);
+    );
+};
 
 
+// --- MAIN PAGE COMPONENT ---
 const EventsPage = () => {
     const [activeFilter, setActiveFilter] = useState("technical");
     const [selectedEvent, setSelectedEvent] = useState(null);
 
     const filteredEvents = useMemo(() => {
         return allEvents.filter(event => event.category === activeFilter);
-    }, [activeFilter, allEvents]);
+    }, [activeFilter]);
 
     return (
         <>
-            <EventCardClipPath />
             <style>{`
                 .dot-grid { background-image: radial-gradient(circle at 1px 1px, rgba(200, 200, 200, 0.2) 1px, transparent 0); background-size: 20px 20px; }
                 .custom-scrollbar::-webkit-scrollbar { width: 4px; }
@@ -133,39 +214,48 @@ const EventsPage = () => {
                 .animate-scale-in { animation: scale-in 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
             `}</style>
 
-            <main className="h-screen w-screen relative overflow-hidden dot-grid font-['KH_Interference'] flex items-center justify-center p-4 sm:p-9">
+            <main className="h-screen w-screen relative overflow-hidden dot-grid font-['KH Interference'] flex items-center justify-center p-4 sm:p-9">
                 <div className="relative w-full h-full max-w-screen-2xl">
+                    {/* ✨ CHANGE: SVG border logic is preserved. Fancy on desktop, simpler on mobile. */}
                     <div className="absolute inset-0 z-0 pointer-events-none">
                         <div className="hidden md:block w-full h-full">
-                           <DesktopPageBorderSVG />
+                            <DesktopPageBorderSVG />
                         </div>
                         <div className="block md:hidden w-full h-full">
-                           <MobilePageBorderSVG />
+                            <MobilePageBorderSVG />
                         </div>
                     </div>
 
+                    {/* ✨ CHANGE: Clean layout structure is preserved: Filter -> Content */}
                     <div className="absolute inset-0 z-10 flex flex-col pt-0">
+                        {/* Filter is sticky, centered, and positioned correctly within the border design */}
                         <div className="flex-shrink-0 sticky top-0 bg-transparent z-20 pt-4 md:pt-0">
                             <FilterNavigation activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
                         </div>
-
+                        
+                        {/* Scrollable content area */}
                         <div className="flex-grow overflow-y-scroll no-scrollbar pt-12 md:pt-16 pb-12">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 px-4 md:px-8">
+                            {/* ✨ CHANGE: Updated the grid for better responsiveness.
+                              - More breakpoints (sm, lg) for smoother scaling.
+                              - Increased padding on larger screens (md:px-12 lg:px-20) for better spacing inside the border.
+                              - Adjusted gaps for a cleaner look with smaller cards.
+                            */}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 px-6 md:px-12 lg:px-20">
                                 {filteredEvents.map(event => (
-                                    <div key={event.id} className="max-w-sm mx-auto w-full">
-                                        <EventCard event={event} onViewDetailsClick={setSelectedEvent} />
-                                    </div>
+                                    // ✨ CHANGE: Removed the restrictive 'max-w-sm' wrapper. 
+                                    // The EventCard now responsively fills its grid cell.
+                                    <EventCard key={event.id} event={event} onViewDetailsClick={setSelectedEvent} />
                                 ))}
                             </div>
                         </div>
 
+                        {/* Spacer at the bottom to prevent content from hitting the edge */}
                         <div className="flex-shrink-0 h-12 md:h-24"></div>
                     </div>
                 </div>
             </main>
-            
-            {/* You can re-enable the modal logic when ready */}
-            {/* <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} /> */}
+
+            <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
         </>
     );
 };
