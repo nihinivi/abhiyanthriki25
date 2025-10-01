@@ -36,9 +36,11 @@ const EventsIcon = () => (
 
 const Navbar = () => {
   return (
-    <header className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-md px-2">
+    // Main Change: Replaced explicit width with w-auto to make the navbar shrink-to-fit its content.
+    <header className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-auto px-2">
       <nav
-        className="flex items-center justify-between w-full px-3 md:px-4 py-2 md:py-3 rounded-full border border-neutral-700 bg-black/50 backdrop-blur-lg shadow-lg"
+        // Removed `justify-between` and added `gap` to make the internal layout more compact.
+        className="flex items-center w-full px-4 py-2 rounded-full border border-neutral-700 bg-black/50 backdrop-blur-lg shadow-lg gap-3 md:gap-4"
         style={{
           boxShadow:
             "0 0 15px rgba(246, 64, 64, 0.5), 0 0 30px rgba(246, 64, 64, 0.3)",
@@ -49,8 +51,8 @@ const Navbar = () => {
           <a href="#">A3K'25</a>
         </div>
 
-        {/* Icons */}
-        <div className="flex items-center gap-4 md:gap-6">
+        {/* Icons - Reduced the gap between icons */}
+        <div className="flex items-center gap-3 md:gap-4">
           <a
             href="/"
             className="text-neutral-300 hover:text-red-500 transition-colors"
@@ -67,8 +69,8 @@ const Navbar = () => {
           </a>
         </div>
 
-        {/* Register Button */}
-        <button className="bg-red-600 text-white font-bold py-1.5 md:py-2 px-3 md:px-6 rounded-full border-2 border-transparent hover:bg-transparent hover:border-red-600 transition-all duration-300 uppercase tracking-widest text-[0.7rem] md:text-sm whitespace-nowrap">
+        {/* Register Button - Reduced horizontal padding to make it narrower */}
+        <button className="bg-red-600 text-white font-bold py-1.5 md:py-2 px-4 md:px-5 rounded-full border-2 border-transparent hover:bg-transparent hover:border-red-600 transition-all duration-300 uppercase tracking-widest text-[0.7rem] md:text-sm whitespace-nowrap">
           Register
         </button>
       </nav>
