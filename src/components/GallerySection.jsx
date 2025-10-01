@@ -1,136 +1,71 @@
-import React, { useRef, Suspense } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useScroll, Image as DreiImage, ScrollControls } from '@react-three/drei';
-import { EffectComposer, DepthOfField } from '@react-three/postprocessing';
-import * as THREE from 'three';
-import { useInView } from 'framer-motion';
+import React from "react";
 
-// --- IMAGE DATA ---
+// 1. IMPORT YOUR 8 LOCAL IMAGES
 import image1 from "../assets/figma/1.png";
 import image2 from "../assets/figma/2.png";
 import image3 from "../assets/figma/3.png";
-import image4 from "../assets/figma/4.png";
+import image4 from "../assets/figma/4.png"; // Replace with your actual image paths
 import image5 from "../assets/figma/5.png";
 import image6 from "../assets/figma/6.png";
 import image7 from "../assets/figma/7.png";
 import image8 from "../assets/figma/8.png";
 
-const allImages = [image1, image2, image3, image4, image5, image6, image7, image8];
+// --- DATA SETUP ---
+const allImages = [
+  { src: image1, alt: "Tech Fest Image 1" },
+  { src: image2, alt: "Tech Fest Image 2" },
+  { src: image3, alt: "Tech Fest Image 3" },
+  { src: image4, alt: "Tech Fest Image 4" },
+  { src: image5, alt: "Tech Fest Image 5" },
+  { src: image6, alt: "Tech Fest Image 6" },
+  { src: image7, alt: "Tech Fest Image 7" },
+  { src: image8, alt: "Tech Fest Image 8" },
+];
 
-// ✅ Single Image Plane (safe version)
-function ImagePlane({ url, ...props }) {
-  const ref = useRef();
+const row1Images = allImages.slice(0, 4);
+const row2Images = allImages.slice(4, 8);
 
-  // Safely animate each image itself
-  useFrame(() => {
-    if (!ref.current) return;
-    // We'll let the parent group control opacity & scale
-  });
 
-  return (
-    <DreiImage
-      ref={ref}
-      url={url}
-      transparent
-      {...props}
-    />
-  );
-}
-
-// ✅ Group of all images with safe animation logic
-function Images() {
-  const groupRef = useRef();
-  const scroll = useScroll();
-  const { width: w, height: h } = useThree((state) => state.viewport);
-  const gap = 12;
-
-  useFrame(() => {
-    if (!groupRef.current) return;
-    const scrolledDistance = scroll.offset * (allImages.length * gap);
-
-    groupRef.current.children.forEach((child) => {
-      if (!child) return;
-
-      // The <Image> component is a Group -> its actual mesh is child.children[0]
-      const mesh = child.children?.[0];
-      if (!mesh) return;
-
-      const imageZPosition = child.position.z;
-      const distanceFromCamera = imageZPosition + scrolledDistance;
-
-      // ✅ Smooth "bomb" scale
-      const scale = THREE.MathUtils.mapLinear(Math.abs(distanceFromCamera), 0, 15, 1, 0.2);
-      child.scale.set(scale, scale, 1);
-
-      // ✅ Safe opacity update (if material exists)
-      if (mesh.material) {
-        mesh.material.opacity = THREE.MathUtils.clamp(
-          THREE.MathUtils.mapLinear(distanceFromCamera, -5, 0, 0, 1),
-          0,
-          1
-        );
-      }
-    });
-  });
-
-  return (
-    <group ref={groupRef}>
-      {allImages.map((url, i) => (
-        <ImagePlane
-          key={i}
-          position={[
-            (i % 2 === 0 ? -1 : 1) * (w / 5 + Math.random() * 0.5),
-            THREE.MathUtils.randFloat(-h, h) * 0.3,
-            -i * gap,
-          ]}
-          scale={[w / 4, h / 2.5, 1]}
-          rotation-z={THREE.MathUtils.randFloat(-0.1, 0.1)}
-          url={url}
-        />
-      ))}
-    </group>
-  );
-}
-
-// ✅ Main Gallery Section
-const GallerySection = () => {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-
-  return (
-    <section
-      ref={sectionRef}
-      id="gallery"
-      className="relative w-full h-screen bg-transparent overflow-hidden"
-      style={{ position: 'relative' }} // ensures framer-motion & Canvas work correctly
+// --- Reusable Row Component ---
+const MarqueeRow = ({ images, direction = 'normal' }) => (
+  <div className="flex w-full overflow-hidden group">
+    <div
+      className={`flex shrink-0 items-center justify-around min-w-full ${
+        direction === 'normal' ? 'animate-marquee-normal' : 'animate-marquee-reverse'
+      } group-hover:[animation-play-state:paused]`}
     >
-      {/* Title */}
-      <div className="absolute top-16 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
-        <h2 className="text-center font-['KH Interference'] text-5xl md:text-7xl text-[#F64040]">
+      {/* Render images twice for a seamless loop */}
+      {[...images, ...images].map((image, index) => (
+        <div key={index} className="px-4 w-[28rem] shrink-0">
+          <div className="relative rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:scale-110 hover:z-20 -ml-16 hover:ml-0 hover:mr-0 shadow-lg hover:shadow-red-900/50">
+            <img
+              src={image.src}
+              alt={image.alt}
+              className="w-full h-56 object-cover transform rotate-3 scale-110"
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+// --- MAIN GALLERY COMPONENT ---
+const GallerySection = () => {
+  return (
+    <section id="gallery" className="w-full min-h-screen py-24 overflow-x-hidden bg-black">
+      {/* Title Container */}
+      <div className="mb-16">
+        <h2 className="text-center font-['KH Interference'] text-6xl md:text-8xl text-[#F64040]">
           Gallery
         </h2>
       </div>
 
-      {isInView && (
-        <Suspense fallback={null}>
-          <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-            <ambientLight intensity={1.5} />
-
-            <ScrollControls pages={allImages.length} damping={0.2}>
-              <Images />
-            </ScrollControls>
-
-            <EffectComposer>
-              <DepthOfField
-                focusDistance={0}
-                focalLength={0.02}
-                bokehScale={4}
-                height={480}
-              />
-            </EffectComposer>
-          </Canvas>
-        </Suspense>
-      )}
+      {/* Main slanted container for the scrolling rows */}
+      <div className="relative flex flex-col justify-center gap-8 transform -rotate-3 scale-110">
+        <MarqueeRow images={row1Images} direction="normal" />
+        <MarqueeRow images={row2Images} direction="reverse" />
+      </div>
     </section>
   );
 };

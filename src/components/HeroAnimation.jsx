@@ -1,15 +1,18 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useEffect } from "react";
 import ringStar from "../assets/ring.svg";
+// 1. Import your TextImage
+import TextImage from "../assets/figma/Text.png"; // Make sure this path is correct
 
 function Globe() {
   const globeRef = useRef();
 
-    useEffect(() => {
+  useEffect(() => {
     if (globeRef.current) {
       globeRef.current.rotation.z = (30 * Math.PI) / 180; // tilt
     }
   }, []);
+
   useFrame(() => {
     if (globeRef.current) {
       globeRef.current.rotation.y += 0.003;
@@ -24,23 +27,35 @@ function Globe() {
   );
 }
 
-export default function HeroSection() {
+// Renamed the export to HeroAnimation to match common usage from your previous code
+export default function HeroAnimation() { 
   return (
-<div className="relative w-screen h-screen  bg-repeat bg-[length:100px_100px] flex items-center justify-center">
-  <div className="relative w-[90vw] max-w-[900px] aspect-square">
-    <Canvas className="absolute inset-0" camera={{ position: [0, 0, 10], fov: 50 }}>
-      <ambientLight intensity={0.5} />
-      <Globe />
-    </Canvas>
+    <div className="relative w-screen h-screen bg-repeat bg-[length:100px_100px] flex items-center justify-center">
+      <div className="relative w-[90vw] max-w-[900px] aspect-square">
+        
+        {/* Bottom Layer: The 3D Globe */}
+        <Canvas className="absolute inset-0" camera={{ position: [0, 0, 10], fov: 50 }}>
+          <ambientLight intensity={0.5} />
+          <Globe />
+        </Canvas>
 
-    <img
-      src={ringStar}
-      alt="ring with star"
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ transform: "translateY(-5%) translateX(5%) scale(1.05)" }}
-    />
-  </div>
-</div>
+        {/* Middle Layer: The Ring Image */}
+        <img
+          src={ringStar}
+          alt="ring with star"
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          style={{ transform: "translateY(-5%) translateX(5%) scale(1.05)" }}
+        />
 
+        {/* 2. Place TextImage here as the TOP LAYER */}
+        {/* Since it's the last absolutely positioned element, it will render on top of the others. */}
+        <img
+          src={TextImage}
+          alt="Text over animation"
+          className="absolute inset-0 w-full h-full object-contain pointer-events-none" // Use object-contain to prevent cropping
+        />
+
+      </div>
+    </div>
   );
 }
