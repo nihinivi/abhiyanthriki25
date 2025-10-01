@@ -36,10 +36,9 @@ const EventsIcon = () => (
 
 const Navbar = () => {
   return (
-    // CHANGE: Replaced "w-[90%] md:w-auto" with just "w-auto"
-    <header className="fixed bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 z-50 w-auto">
+    <header className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-md px-2">
       <nav
-        className="flex items-center justify-between md:gap-6 gap-3 px-3 md:px-4 py-2 md:py-3 rounded-full border border-neutral-700 bg-black/50 backdrop-blur-lg"
+        className="flex items-center justify-between w-full px-3 md:px-4 py-2 md:py-3 rounded-full border border-neutral-700 bg-black/50 backdrop-blur-lg shadow-lg"
         style={{
           boxShadow:
             "0 0 15px rgba(246, 64, 64, 0.5), 0 0 30px rgba(246, 64, 64, 0.3)",
@@ -51,7 +50,7 @@ const Navbar = () => {
         </div>
 
         {/* Icons */}
-        <div className="flex items-center gap-3 md:gap-5">
+        <div className="flex items-center gap-4 md:gap-6">
           <a
             href="/"
             className="text-neutral-300 hover:text-red-500 transition-colors"
@@ -69,7 +68,7 @@ const Navbar = () => {
         </div>
 
         {/* Register Button */}
-        <button className="bg-red-600 text-white font-bold py-1.5 md:py-2 px-3 md:px-6 rounded-full border-2 border-transparent hover:bg-transparent hover:border-red-600 transition-all duration-300 uppercase tracking-widest text-[0.65rem] md:text-sm whitespace-nowrap">
+        <button className="bg-red-600 text-white font-bold py-1.5 md:py-2 px-3 md:px-6 rounded-full border-2 border-transparent hover:bg-transparent hover:border-red-600 transition-all duration-300 uppercase tracking-widest text-[0.7rem] md:text-sm whitespace-nowrap">
           Register
         </button>
       </nav>

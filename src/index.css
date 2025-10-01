@@ -10,6 +10,8 @@
 
 html, body, #root {
   height: 100%;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -50,3 +52,4 @@ h3 { font-size: clamp(1.25rem, 3vw, 2.5rem); line-height: 1.1; }
 .animate-marquee-reverse {
   animation: marquee 60s linear infinite reverse;
 }
+

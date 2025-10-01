@@ -5,19 +5,19 @@ import FooterSection from './FooterSection';
 
 const Layout = () => {
   const location = useLocation();
-
-  // ✅ CORRECTED LOGIC:
-  // We check for the exact path '/eventdetails' as defined in your App.jsx routes.
   const isEventDetailPage = location.pathname === '/eventdetails';
 
   return (
     <>
-      <Navbar />
-      <main>
+      {/* ✅ Main content container with bottom padding to prevent overlap */}
+      <main className="min-h-screen pb-24 md:pb-0 overflow-x-hidden">
         <Outlet />
       </main>
-      
-      {/* This will now correctly hide the footer ONLY on the /eventdetails page */}
+
+      {/* ✅ Navbar is always visible */}
+      <Navbar />
+
+      {/* ✅ Footer is hidden only on event details page */}
       {!isEventDetailPage && <FooterSection />}
     </>
   );

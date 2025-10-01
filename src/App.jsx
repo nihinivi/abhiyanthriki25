@@ -12,22 +12,21 @@ const EventDetails = lazy(() => import('./components/EventDetails'));
 function App() {
   return (
     // The main container no longer needs background styles as they are in index.css
-    <div className="relative min-h-screen w-full">
-      {/* ✅ NEW: The animated background is rendered here, behind all other content */}
-      <AnimatedBackground />
-      
-      {/* The rest of your app content will be layered on top */}
-      <div className="relative z-10">
-        <Suspense fallback={<div className="fixed inset-0 flex items-center justify-center text-white">Loading...</div>}>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<HomePage />} />
-              <Route path="eventdetails" element={<EventDetails />} />
-            </Route>
-          </Routes>
-        </Suspense>
-      </div>
-    </div>
+    <div className="relative min-h-screen w-full overflow-x-hidden">
+  <AnimatedBackground />
+
+  <div className="relative z-10 flex flex-col">
+    <Suspense fallback={<div className="fixed inset-0 flex items-center justify-center text-white">Loading...</div>}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="eventdetails" element={<EventDetails />} />
+        </Route>
+      </Routes>
+    </Suspense>
+  </div>
+</div>
+
   );
 }
 
