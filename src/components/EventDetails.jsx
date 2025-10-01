@@ -229,7 +229,7 @@ const EventsPage = () => {
                     {/* ✨ CHANGE: Clean layout structure is preserved: Filter -> Content */}
                     <div className="absolute inset-0 z-10 flex flex-col pt-0">
                         {/* Filter is sticky, centered, and positioned correctly within the border design */}
-                        <div className="flex-shrink-0 sticky top-0 bg-transparent z-20 pt-4 md:pt-0">
+                        <div className="flex-shrink-0 sticky top-0 bg-transparent z-20 pt-8 md:pt-0">
                             <FilterNavigation activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
                         </div>
                         
