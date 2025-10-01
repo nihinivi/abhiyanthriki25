@@ -46,7 +46,7 @@ const FooterSection = () => {
   };
 
   return (
-    <footer className="relative w-full bg-black text-neutral-300 py-16 px-6 sm:px-12">
+    <footer className="relative w-full bg-black/50 text-neutral-300 py-16 px-6 sm:px-12">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-16 md:gap-8">
 
         {/* Left Column: Logos, Address & Map */}

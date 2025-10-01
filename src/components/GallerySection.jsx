@@ -53,7 +53,7 @@ const MarqueeRow = ({ images, direction = 'normal' }) => (
 // --- MAIN GALLERY COMPONENT ---
 const GallerySection = () => {
   return (
-    <section id="gallery" className="w-full min-h-screen py-24 overflow-x-hidden bg-black">
+    <section id="gallery" className="w-full min-h-screen py-24 overflow-x-hidden">
       {/* Title Container */}
       <div className="mb-16">
         <h2 className="text-center font-['KH Interference'] text-6xl md:text-8xl text-[#F64040]">
