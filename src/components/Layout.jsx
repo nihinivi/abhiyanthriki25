@@ -10,8 +10,9 @@ const Layout = () => {
   return (
     <> 
 
-     {hideFooter && 
+     {hideFooter &&  
 <Waves
+ className="h-screen w-screen"
   lineColor="#121212"
   backgroundColor="rgba(255, 255, 255, 0.2)"
   waveSpeedX={0.02}
@@ -22,8 +23,8 @@ const Layout = () => {
   tension={0.01}
   maxCursorMove={120}
   xGap={12}
-  yGap={36}
-/>}
+  yGap={36} 
+/>  }
      {!hideFooter && <Navbar />}
       <main>
         <Outlet />
