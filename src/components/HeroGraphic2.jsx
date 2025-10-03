@@ -1,6 +1,6 @@
 import React from 'react';
 // 1. Import the image from its folder
-import MobileHero from '../assets/figma/MobileHero1.png';
+import MobileHero from '../assets/figma/mobilebg.svg';
 
 // 2. The component now returns a simple, styled image element
 export default function HeroGraphic() {

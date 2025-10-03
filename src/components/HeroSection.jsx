@@ -28,7 +28,7 @@ const HeroSection = () => {
                     {/* HERO ANIMATION (BOTTOM LAYER)
                         - The animation is now hidden on mobile (`hidden`) and appears on medium screens and up (`md:block`).
                     */}
-                    <div className="hidden md:block scale-90 sm:scale-100 md:scale-90 lg:scale-100 col-start-1 row-start-1">
+                    <div className="md:block scale-90 sm:scale-100 md:scale-90 lg:scale-100 col-start-1 row-start-1">
                         <HeroAnimation />
                     </div>
                 </div>

@@ -30,32 +30,32 @@ function Globe() {
 // Renamed the export to HeroAnimation to match common usage from your previous code
 export default function HeroAnimation() { 
   return (
-    <div className="relative w-screen h-screen bg-repeat bg-[length:100px_100px] flex items-center justify-center">
-      <div className="relative w-[90vw] max-w-[900px] aspect-square">
-        
-        {/* Bottom Layer: The 3D Globe */}
-        <Canvas className="absolute inset-0" camera={{ position: [0, 0, 10], fov: 50 }}>
-          <ambientLight intensity={0.5} />
-          <Globe />
-        </Canvas>
+<div className="relative w-screen h-screen bg-repeat bg-[length:100px_100px] flex items-center justify-center">
+  <div className="relative w-[90vw] max-w-[900px] aspect-square">
+    {/* Bottom Layer: The 3D Globe */}
+    <Canvas className="absolute inset-0" camera={{ position: [0, 0, 10], fov: 50 }}>
+      <ambientLight intensity={0.5} />
+      <Globe />
+    </Canvas>
 
-        {/* Middle Layer: The Ring Image */}
-        <img
-          src={ringStar}
-          alt="ring with star"
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{ transform: "translateY(-5%) translateX(5%) scale(1.05)" }}
-        />
+    {/* Middle Layer: The Ring Image */}
+    <img
+      src={ringStar}
+      alt="ring with star"
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ transform: "translateY(-5%) translateX(5%) scale(1.05)" }}
+    />
+  </div>
 
-        {/* 2. Place TextImage here as the TOP LAYER */}
-        {/* Since it's the last absolutely positioned element, it will render on top of the others. */}
-        <img
-          src={TextImage}
-          alt="Text over animation"
-          className="absolute inset-0 w-full h-full object-contain pointer-events-none" // Use object-contain to prevent cropping
-        />
+  {/* 🔥 TOP LAYER: Text image spanning screen width, centered */}
+  <img
+    src={TextImage}
+    alt="Text over animation"
+    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+               w-[120%] sm:w-[150%] md:w-[180%] lg:w-[220%] xl:w-[250%] 
+               h-auto object-contain pointer-events-none"
+  />
+</div>
 
-      </div>
-    </div>
   );
 }
