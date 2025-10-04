@@ -4,37 +4,55 @@ import { FiArrowDown } from "react-icons/fi";
 
 import HeroGraphicMobile from "./HeroGraphic2";
 import HeroGraphicWeb from "./HeroGraphic";
-import HeroAnimation from "./HeroAnimation"; // Make sure path is correct
+import HeroAnimation from "./HeroAnimation";
+
+const transition = { duration: 0.3, ease: "easeOut" };
+const initial = { scale: 0.9, filter: "blur(10px)", opacity: 0 };
+const animate = { scale: 1, filter: "blur(0px)", opacity: 1 };
 
 const HeroSection = () => {
     return (
-        <section
-            className="relative w-screen h-screen overflow-hidden"
-        >
+        <section className="relative w-screen h-screen overflow-hidden">
             <div className="relative w-full h-full flex items-center justify-center">
                 {/* Background graphics */}
-                <div className="absolute inset-0 z-0">
+                <motion.div
+                    className="absolute inset-0 z-0"
+                    initial={initial}
+                    animate={animate}
+                    transition={transition}
+                >
                     <div className="block md:hidden w-full h-full">
                         <HeroGraphicMobile />
                     </div>
                     <div className="hidden md:block w-full h-full">
                         <HeroGraphicWeb />
                     </div>
-                </div>
+                </motion.div>
 
-                {/* Container for overlapping centered content */}
-                <div className="absolute inset-0 grid place-items-center z-10">
-                    
-                    {/* HERO ANIMATION (BOTTOM LAYER)
-                        - The animation is now hidden on mobile (`hidden`) and appears on medium screens and up (`md:block`).
-                    */}
-                    <div className="md:block scale-90 sm:scale-100 md:scale-90 lg:scale-100 col-start-1 row-start-1">
+                {/* Centered content */}
+                <motion.div
+                    className="absolute inset-0 grid place-items-center z-10"
+                    initial={initial}
+                    animate={animate}
+                    transition={transition}
+                >
+                    <motion.div
+                        className="md:block scale-90 sm:scale-100 md:scale-90 lg:scale-100 col-start-1 row-start-1"
+                        initial={initial}
+                        animate={animate}
+                        transition={transition}
+                    >
                         <HeroAnimation />
-                    </div>
-                </div>
-                
+                    </motion.div>
+                </motion.div>
+
                 {/* Scroll arrow */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+                <motion.div
+                    className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+                    initial={initial}
+                    animate={animate}
+                    transition={transition}
+                >
                     <motion.a
                         href="#about"
                         aria-label="Scroll down"
@@ -50,11 +68,10 @@ const HeroSection = () => {
                     >
                         <FiArrowDown className="w-8 h-8 md:w-10 md:h-10" />
                     </motion.a>
-                </div>
+                </motion.div>
             </div>
         </section>
     );
 };
 
 export default HeroSection;
-
