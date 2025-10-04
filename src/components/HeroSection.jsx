@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FiArrowDown } from "react-icons/fi";
 
 import HeroGraphicMobile from "./HeroGraphic2";
 import HeroGraphicWeb from "./HeroGraphic";
@@ -46,29 +45,6 @@ const HeroSection = () => {
                     </motion.div>
                 </motion.div>
 
-                {/* Scroll arrow */}
-                <motion.div
-                    className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
-                    initial={initial}
-                    animate={animate}
-                    transition={transition}
-                >
-                    <motion.a
-                        href="#about"
-                        aria-label="Scroll down"
-                        className="text-white cursor-pointer"
-                        initial={{ y: -5 }}
-                        animate={{ y: 5 }}
-                        transition={{
-                            repeat: Infinity,
-                            repeatType: "reverse",
-                            duration: 1.5,
-                            ease: "easeInOut",
-                        }}
-                    >
-                        <FiArrowDown className="w-8 h-8 md:w-10 md:h-10" />
-                    </motion.a>
-                </motion.div>
             </div>
         </section>
     );
