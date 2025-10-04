@@ -1,4 +1,8 @@
 import React from 'react';
+import A3KLogo from '../assets/figma/A3K.png';
+import JubileeLogo from '../assets/figma/Jubilee.png';
+import RSETLogo from '../assets/figma/RSET.png';
+// 1. Uncomment the line below after installing emailjs
 // import emailjs from '@emailjs/browser'; // 1. Uncomment this line after installing the package
 
 // --- IMPORT YOUR LOGO IMAGES ---
@@ -54,10 +58,10 @@ const FooterSection = () => {
           {/* Logo Group */}
           <div className="flex flex-col items-center md:items-start">
             {/* 4. Replace placeholder URLs with your image imports */}
-            <img src="src\assets\figma\A3K.png" alt="A3K 2025 Logo" className="h-auto w-150" />
+            <img src={A3KLogo} alt="A3K 2025 Logo" className="h-auto w-150" />
             <div className="flex items-center gap-6 mt-6">
-              <img src="src\assets\figma\Jubilee.png" alt="Jubilee Logo" className="h-auto w-30" />
-              <img src="src\assets\figma\RSET.png" alt="RSET Logo" className="h-auto w-50" />
+              <img src={JubileeLogo} alt="Jubilee Logo" className="h-auto w-30" />
+              <img src={RSETLogo} alt="RSET Logo" className="h-auto w-50" />
             </div>
           </div>
           
