@@ -82,9 +82,9 @@ const FooterSection = () => {
         {/* Right Column: Nav & Form */}
         <div className="w-full max-w-md flex flex-col items-center md:items-start">
           <div className="flex items-center gap-8 mb-6">
-            <a href="#" className="font-semibold hover:text-red-500 transition-colors uppercase tracking-widest">Home</a>
-            <a href="#" className="font-semibold hover:text-red-500 transition-colors uppercase tracking-widest">Events</a>
-            <a href="#" className="font-semibold hover:text-red-500 transition-colors uppercase tracking-widest">Registration</a>
+            <a href="#" className="cursor-target cursor-none font-semibold hover:text-red-500 transition-colors uppercase tracking-widest">Home</a>
+            <a href="#" className="cursor-target cursor-none font-semibold hover:text-red-500 transition-colors uppercase tracking-widest">Events</a>
+            <a href="#" className="cursor-target cursor-none font-semibold hover:text-red-500 transition-colors uppercase tracking-widest">Registration</a>
           </div>
 
           <h3 className="text-2xl font-bold uppercase tracking-wider mb-4 text-white">Contact</h3>
@@ -114,7 +114,7 @@ const FooterSection = () => {
 
             <button
               type="submit"
-              className="bg-transparent border-2 border-red-500 text-red-500 font-bold py-3 px-6 rounded-md hover:bg-red-500 hover:text-white transition-all duration-300 uppercase tracking-widest"
+              className="cursor-target bg-transparent border-2 border-red-500 text-red-500 font-bold py-3 px-6 rounded-md hover:bg-red-500 hover:text-white transition-all duration-300 uppercase tracking-widest cursor-none"
             >
               Send Feedback
             </button>

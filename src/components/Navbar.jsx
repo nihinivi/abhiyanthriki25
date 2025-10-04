@@ -55,14 +55,14 @@ const Navbar = () => {
         <div className="flex items-center gap-3 md:gap-4">
           <a
             href="/"
-            className="text-neutral-300 hover:text-red-500 transition-colors"
+            className="cursor-target cursor-none text-neutral-300 hover:text-red-500 transition-colors"
             aria-label="Home"
           >
             <HomeIcon />
           </a>
           <a
             href="/eventdetails"
-            className="text-neutral-300 hover:text-red-500 transition-colors"
+            className="cursor-target cursor-none text-neutral-300 hover:text-red-500 transition-colors"
             aria-label="Events"
           >
             <EventsIcon />
@@ -70,7 +70,7 @@ const Navbar = () => {
         </div>
 
         {/* Register Button - Reduced horizontal padding to make it narrower */}
-        <button className="bg-red-600 text-white font-bold py-1.5 md:py-2 px-4 md:px-5 rounded-full border-2 border-transparent hover:bg-transparent hover:border-red-600 transition-all duration-300 uppercase tracking-widest text-[0.7rem] md:text-sm whitespace-nowrap">
+        <button className="cursor-target cursor-none bg-red-600 text-white font-bold py-1.5 md:py-2 px-4 md:px-5 rounded-full border-2 border-transparent hover:bg-transparent hover:border-red-600 transition-all duration-300 uppercase tracking-widest text-[0.7rem] md:text-sm whitespace-nowrap">
           Register
         </button>
       </nav>

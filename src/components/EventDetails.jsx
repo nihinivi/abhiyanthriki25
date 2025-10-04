@@ -66,7 +66,7 @@ const MobilePageBorderSVG = () => (
 );
 
 const DetailsRegisterButton = ({ href }) => (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="relative w-full max-w-[280px] h-[58px] group text-white font-['KH Interference'] tracking-widest uppercase text-sm flex items-center justify-center mx-auto">
+    <a href={href} target="_blank" rel="noopener noreferrer" className="cursor-target cursor-none relative w-full max-w-[280px] h-[58px] group text-white font-['KH Interference'] tracking-widest uppercase text-sm flex items-center justify-center mx-auto">
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 285 58" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 1H275C279.971 1 284 5.02944 284 10V31.1021C284 32.2435 283.606 33.3444 282.88 34.2217L273.231 45.3981L262.041 56.622C261.268 57.47 260.16 58 258.998 58H26.0019C24.8402 58 23.7323 57.47 22.9593 56.622L11.769 45.3981L2.11984 34.2217C1.39383 33.3444 1 32.2435 1 31.1021V10C1 5.02944 5.02944 1 10 1Z" stroke="#F64040" strokeWidth="2" />
         </svg>
@@ -75,7 +75,7 @@ const DetailsRegisterButton = ({ href }) => (
 );
 
 const ViewDetailsButton = ({ onClick }) => (
-    <button onClick={onClick} className="relative w-full h-[50px] group text-white font-['KH Interference'] tracking-widest uppercase text-sm">
+    <button onClick={onClick} className="cursor-target cursor-none relative w-full h-[50px] group text-white font-['KH Interference'] tracking-widest uppercase text-sm">
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 379 84" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M11 1H368C373.523 1 378 5.47716 378 11V37.2012C378 39.9827 376.841 42.639 374.803 44.5312L356.591 61.4326L334.06 80.6143C332.251 82.154 329.953 83 327.577 83H51.4229C49.0474 83 46.7492 82.154 44.9404 80.6143L22.4082 61.4326L4.19727 44.5312C2.15851 42.639 1 39.9827 1 37.2012V11C1 5.47715 5.47715 1 11 1Z" stroke="#F64040" strokeWidth="2" />
         </svg>
@@ -115,13 +115,13 @@ const FilterNavigation = ({ activeFilter, setActiveFilter }) => (
             <div className={`absolute top-1/2 -translate-y-1/2 left-1.5 w-[calc(50%-6px)] h-[calc(100%-12px)] bg-red-600 rounded-full transition-transform duration-300 ease-out ${activeFilter === 'non-technical' ? 'translate-x-full' : 'translate-x-0'}`}></div>
             <button
                 onClick={() => setActiveFilter("technical")}
-                className="relative flex-1 py-2 text-white text-xs md:text-sm uppercase font-['KH Interference'] tracking-wider text-center"
+                className="cursor-target cursor-none relative flex-1 py-2 text-white text-xs md:text-sm uppercase font-['KH Interference'] tracking-wider text-center"
             >
                 Technical Events
             </button>
             <button
                 onClick={() => setActiveFilter("non-technical")}
-                className="relative flex-1 py-2 text-white text-xs md:text-sm uppercase font-['KH Interference'] tracking-wider text-center"
+                className="cursor-target cursor-none relative flex-1 py-2 text-white text-xs md:text-sm uppercase font-['KH Interference'] tracking-wider text-center"
             >
                 Non-Technical Events
             </button>
@@ -179,7 +179,7 @@ const EventModal = ({ event, onClose }) => {
                 </div>
             </div>
 
-            <button onClick={onClose} className="absolute top-4 right-4 md:top-6 md:right-6 text-neutral-400 hover:text-white transition-colors z-50">
+            <button onClick={onClose} className="cursor-target cursor-none absolute top-4 right-4 md:top-6 md:right-6 text-neutral-400 hover:text-white transition-colors z-50">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>

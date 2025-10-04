@@ -5,6 +5,8 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import AnimatedBackground from './components/AnimatedBackground'; // ✅ NEW
 
+import TargetCursor from './components/TargetCursor.jsx';
+
 // Lazily load page components
 const HomePage = lazy(() => import('./components/HomePage'));
 const EventDetails = lazy(() => import('./components/EventDetails'));
@@ -12,8 +14,13 @@ const EventDetails = lazy(() => import('./components/EventDetails'));
 function App() {
   return (
     // The main container no longer needs background styles as they are in index.css
+    
     <div className="relative min-h-screen w-full overflow-x-hidden">
   <AnimatedBackground />
+    <TargetCursor 
+        spinDuration={2}
+        hideDefaultCursor={true}
+      />
 
   <div className="relative z-10 flex flex-col">
     <Suspense fallback={<div className="fixed inset-0 flex items-center justify-center text-white">Loading...</div>}>
