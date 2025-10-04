@@ -54,10 +54,10 @@ const FooterSection = () => {
           {/* Logo Group */}
           <div className="flex flex-col items-center md:items-start">
             {/* 4. Replace placeholder URLs with your image imports */}
-            <img src="src\assets\figma\A3K.png" alt="A3K 2025 Logo" className="h-20 w-150" />
+            <img src="src\assets\figma\A3K.png" alt="A3K 2025 Logo" className="h-auto w-150" />
             <div className="flex items-center gap-6 mt-6">
-              <img src="src\assets\figma\Jubilee.png" alt="Jubilee Logo" className="h-25 w-30" />
-              <img src="src\assets\figma\RSET.png" alt="RSET Logo" className="h-20 w-50" />
+              <img src="src\assets\figma\Jubilee.png" alt="Jubilee Logo" className="h-auto w-30" />
+              <img src="src\assets\figma\RSET.png" alt="RSET Logo" className="h-auto w-50" />
             </div>
           </div>
           
