@@ -1,5 +1,5 @@
 import React from 'react';
-import A3KLogo from '../assets/figma/A3K.png';
+import A3KLogo from '../assets/figma/a3kfooter.png';
 import JubileeLogo from '../assets/figma/Jubilee.png';
 import RSETLogo from '../assets/figma/RSET.png';
 // 1. Uncomment the line below after installing emailjs
