@@ -37,7 +37,7 @@ export default function HeroAnimation() {
 <div className="relative w-screen h-screen bg-repeat bg-[length:100px_100px] flex items-center justify-center">
   <div className="relative w-[90vw] max-w-[900px] aspect-square">
     {/* Bottom Layer: The 3D Globe */}
-    <Canvas className="absolute inset-0" camera={{ position: [0, 0, 10], fov: 50 }} frameloop="always">
+    <Canvas className="absolute inset-0" camera={{ position: [0, 0, 10], fov: 50 }} frameloop="always"  resize={{ scroll: true, debounce: { scroll: 0, resize: 0 } }}>
       <ambientLight intensity={0.5} />
       <Globe />
     </Canvas>
