@@ -17,10 +17,12 @@ function App() {
     
     <div className="relative min-h-screen w-full overflow-x-hidden">
   <AnimatedBackground />
+  <div className="hidden md:block">
     <TargetCursor 
         spinDuration={2}
         hideDefaultCursor={true}
       />
+      </div>
 
   <div className="relative z-10 flex flex-col">
     <Suspense fallback={<div className="fixed inset-0 flex items-center justify-center text-white">Loading...</div>}>
