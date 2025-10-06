@@ -12,7 +12,7 @@ const animate = { scale: 1, filter: "blur(0px)", opacity: 1 };
 
 const HeroSection = () => {
     return (
-        <section className="relative w-screen h-screen overflow-hidden">
+        <section id="home" className="relative w-screen h-screen overflow-hidden">
              <Navbar />
             <div className="relative w-full h-full flex items-center justify-center">
                 {/* Background graphics */}

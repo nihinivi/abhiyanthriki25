@@ -86,8 +86,8 @@ const FooterSection = () => {
         {/* Right Column: Nav & Form */}
         <div id='contact' className="w-full max-w-md flex flex-col items-center md:items-start">
           <div className="flex items-center gap-8 mb-6">
-            <a href="#" className="cursor-target cursor-none font-semibold hover:text-red-500 transition-colors uppercase tracking-widest">Home</a>
-            <a href="#" className="cursor-target cursor-none font-semibold hover:text-red-500 transition-colors uppercase tracking-widest">Events</a>
+            <a href="#home" className="cursor-target cursor-none font-semibold hover:text-red-500 transition-colors uppercase tracking-widest">Home</a>
+            <a href="/eventdetails" className="cursor-target cursor-none font-semibold hover:text-red-500 transition-colors uppercase tracking-widest">Events</a>
             <a href="#" className="cursor-target cursor-none font-semibold hover:text-red-500 transition-colors uppercase tracking-widest">Registration</a>
           </div>
 
