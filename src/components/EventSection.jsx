@@ -20,7 +20,7 @@ export default function EventSection() {
   
   return (
     
-    <section className="w-screen min-h-screen">
+    <section id='event' className="w-screen min-h-screen">
       
       <div className="mx-auto max-w-[1920px] px-6 py-0 h-full">
         {/* Title */}

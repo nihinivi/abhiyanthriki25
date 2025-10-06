@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import HeroGraphicMobile from "./HeroGraphic2";
 import HeroGraphicWeb from "./HeroGraphic";
 import HeroAnimation from "./HeroAnimation";
+import Navbar from "./TopNav";
 
 const transition = { duration: 0.3, ease: "easeOut" };
 const initial = { scale: 0.9, filter: "blur(10px)", opacity: 0 };
@@ -12,6 +13,7 @@ const animate = { scale: 1, filter: "blur(0px)", opacity: 1 };
 const HeroSection = () => {
     return (
         <section className="relative w-screen h-screen overflow-hidden">
+             <Navbar />
             <div className="relative w-full h-full flex items-center justify-center">
                 {/* Background graphics */}
                 <motion.div
@@ -27,6 +29,8 @@ const HeroSection = () => {
                         <HeroGraphicWeb />
                     </div>
                 </motion.div>
+
+               
 
                 {/* Centered content */}
                 <motion.div
