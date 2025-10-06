@@ -98,7 +98,7 @@ const EventCard = ({ event, onViewDetailsClick }) => (
         <CardShapeSVG />
         <div className="absolute inset-0 p-6 flex flex-col">
             <div className="flex-grow space-y-2 mb-2">
-                <h3 className="text-xl font-['KH Interference'] text-white leading-tight">{event.title}</h3>
+                <h3 className="text-center text-xl font-['KH Interference'] text-white leading-tight">{event.title}</h3>
                 <p className="text-neutral-400 text-xs leading-snug">{event.description.substring(0, 150)}...</p>
             </div>
             <div className="flex-shrink-0 mt-auto">
