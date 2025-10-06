@@ -11,85 +11,77 @@ import image8 from "../assets/figma/8.png";
 
 // --- EVENT DATA ARRAY ---
 // Each event now has a 'registrationUrl' property.
+ 
 export const allEvents = [
-    { 
-        id: 1, 
-        title: "AI & Robotics Expo", 
-        category: "technical", 
-        description: "Explore the latest advancements in AI and Robotics. A full day of demos, talks, and workshops.", 
-        date: "Oct 10, 2025", 
-        venue: "Innovation Hall", 
-        imageUrl: image1,
-        registrationUrl: "https://konfhub.com/ai-robotics-expo" // Your specific event URL
+    {
+        id: 1,
+        title: "DecibelZ Inter college Band competition",
+        category: "non-technical",
+        description: "brings college bands to the stage to show their talent and energy. These bands have written songs between exams and practiced in small rooms, dreaming of this moment. With loud drums, strong vocals, and amazing guitar riffs, they make the crowd sing along. It’s not just a contest—it’s a celebration of music and youth.",
+        venue: "Chavara Hall",
+        date: "15th October 2025",
+        imageUrl:image1,
+        registrationUrl: "placeholder"
     },
-    { 
-        id: 2, 
-        title: "Quantum Computing Summit", 
-        category: "technical", 
-        description: "A deep dive into the world of quantum computing with leading researchers and industry pioneers.", 
-        date: "Oct 12, 2025", 
-        venue: "Quantum Auditorium", 
-        imageUrl: image2,
-        registrationUrl: "https://konfhub.com/" // Demo URL
+    {
+        id: 2,
+        title: "Digital Rebirth Inter college Fashion Show",
+        category: "non-technical",
+        description: "where students turn their creative ideas into real fashion. The show mixes themes like sustainability, heritage, technology, and identity. You’ll see saris with modern designs, clothes made from recycled materials, and accessories inspired by circuits. Behind every model is a team of students who work together to create a show that connects tradition with the digital world.",
+        venue: "Chavara Hall",
+        date: "15th October 2025", 
+        imageUrl:image1,
+        registrationUrl: "placeholder"
     },
-    { 
-        id: 3, 
-        title: "CyberSec Conference", 
-        category: "technical", 
-        description: "Learn about the latest threats, vulnerabilities, and defense strategies from top security experts.", 
-        date: "Oct 15, 2025", 
-        venue: "SecureData Center", 
-        imageUrl: image3,
-        registrationUrl: "https://konfhub.com/" // Demo URL
+    {
+        id: 3,
+        title: "Crickonomics: IPL Auction",
+        category: "non-technical",
+        description: "lets students act as IPL team owners. They take part in a fast-paced auction, bidding for players and building dream teams. The room fills with energy, debates, and excitement—it’s just like a real IPL auction!",
+        venue: "Gallery Hall",
+        date: "15th October 2025", 
+        imageUrl:image1,
+        registrationUrl: "placeholder"
     },
-    { 
-        id: 4, 
-        title: "Cloud Native & DevOps", 
-        category: "technical", 
-        description: "Mastering container orchestration, CI/CD pipelines, and infrastructure as code for modern applications.", 
-        date: "Oct 17, 2025", 
-        venue: "DevOps Dome", 
-        imageUrl: image4,
-        registrationUrl: "https://konfhub.com/" // Demo URL
+    {
+        id: 4,
+        title: "Red Code: Women’s Safety & Health Awareness",
+        category: "non-technical",
+        description: "spreads awareness about women’s health in a creative way. Experts talk openly about important topics, and a period-pain simulator helps others understand what women go through. It’s fun, eye-opening, and helps start honest conversations.",
+        venue: "Seminar Hall (KE BLOCK 4th Floor)",
+        date: "15th October 2025",
+        imageUrl:image1,
+        registrationUrl: "placeholder"
     },
-    { 
-        id: 5, 
-        title: "Gaming Tournament", 
-        category: "non-technical", 
-        description: "Compete in the annual e-sports tournament. Featuring popular titles, cash prizes, and a live audience.", 
-        date: "Oct 18, 2025", 
-        venue: "E-Sports Arena", 
-        imageUrl: image5,
-        registrationUrl: "https://konfhub.com/" // Demo URL
+    {
+        id: 5,
+        title: "Canvas of Codes : Digital vs Traditional Painting Competition",
+        category: "non-technical",
+        description: "is a painting event full of fun and color. Participants take on creative challenges like blindfold painting, quick drawing duels, and a big graffiti finale. The results are funny, artistic, and perfect for photos and memories.",
+        venue: "KE Entrance(or PG Hall)",
+        date: "15th October 2025", 
+        imageUrl:image1,
+        registrationUrl: "placeholder"
     },
-    { 
-        id: 6, 
-        title: "Startup Pitch Night", 
-        category: "non-technical", 
-        description: "Watch the brightest new startups pitch their ideas to a panel of venture capitalists.", 
-        date: "Oct 20, 2025", 
-        venue: "Venture Hub", 
-        imageUrl: image6,
-        registrationUrl: "https://konfhub.com/" // Demo URL
+    {
+        id: 6,
+        title: "Galactic Lockdown : An escape room",
+        category: "non-technical",
+        description: "teams enter a sci-fi escape room created by the Astronomy Club. To get out, they must solve puzzles, fix circuits, and crack codes using science and logic. It feels like being inside a thrilling space adventure.",
+        venue: "KE Drawing Hall",
+        date: "15th October 2025", 
+        imageUrl:image1,
+        registrationUrl: "placeholder"
     },
-    { 
-        id: 7, 
-        title: "Tech Industry Social Mixer", 
-        category: "non-technical", 
-        description: "A casual social event for professionals in the tech industry to connect, share ideas, and build their network.", 
-        date: "Oct 22, 2025", 
-        venue: "The Network Lounge", 
-        imageUrl: image7,
-        registrationUrl: "https://konfhub.com/" // Demo URL
-    },
-    { 
-        id: 8, 
-        title: "Creative Design Workshop", 
-        category: "non-technical", 
-        description: "Unlock your creative potential with hands-on sessions on UI/UX design, branding, and digital art.", 
-        date: "Oct 25, 2025", 
-        venue: "Artisan's Hall", 
-        imageUrl: image8,
-        registrationUrl: "https://konfhub.com/" // Demo URL
-    },
+    {
+        id: 7,
+        title: "Among Us",
+        category: "non-technical",
+        description: "turns the campus into a fun mystery game. Players run around solving clues, completing tasks, and guessing who the ‘imposter’ is. It’s full of laughter, teamwork, and surprises. The game keeps everyone excited, whether they’re playing or watching.",
+        venue: "All Around Campus",
+        date: "15th October 2025", 
+        imageUrl:image1,
+        registrationUrl: "placeholder"
+    }
 ];
+ 
